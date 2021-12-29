@@ -5,7 +5,11 @@ export default function Header(params) {
    
     return (
         <header>
-           <div className={classes.overlay}></div>
+           <div className={classes.overlay}>
+           <h1 className="font-exan">REHACTOR</h1>
+          <p className="text-wrap">Explore Rehacktor, the only site that alloe you to discover new games and share experience with your friends!</p>
+           </div>
+          
             <video playsInline autoPlay muted loop>
                <source src={Video} type="video/mp4" />
             </video>
