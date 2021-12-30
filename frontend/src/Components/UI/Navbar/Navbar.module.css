@@ -5,6 +5,7 @@
 }
 
 .navbar {
+  z-index: 5;
   background: linear-gradient(
     to right,
     rgba(18, 55, 55, 1),

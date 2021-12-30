@@ -7,10 +7,10 @@ export default function Navbar() {
         
         <nav className={"navbar navbar-expand-lg navbar-dark bg-dark " + classes.navbar}>
         <div className="container-fluid">
-          <div className={classes.navLogo}></div>
           <a className={classes["navbar-brand"]} href="#">
           <FontAwesomeIcon icon={faSpinner} className='fa-1x text-main mx-1' />
             REHACTOR
+          <div className={classes.navLogo}></div>
             </a>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>

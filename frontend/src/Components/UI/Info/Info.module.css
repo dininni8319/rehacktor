@@ -13,7 +13,9 @@
 
 .bg-info {
   background: linear-gradient(#222 5%, rgba(33, 37, 41, 0.6), #222),
-  url("./../../../Assets/alien-planet.jpeg"),    /* url("./../../../Assets/alien-planet.jpeg");*/;
+   url("./../../../Assets/matrix-code.jpeg");
+  background: linear-gradient(#222 5%, rgba(33, 37, 41, 0.6), #222),
+   url("./../../../Assets/matrix-code.jpeg");
   background-size: cover, 120px, cover;
   background-position: center, center, center;
 }
