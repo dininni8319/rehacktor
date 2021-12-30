@@ -31,37 +31,37 @@ export default function Info() {
               </div>
               <div className={"row px-3 pt-5" + classes.info}>
               <div className="col-6 col-md-4 my-5 text-center text-md-start">
-                      <FontAwesomeIcon icon={faGamepad} className='fa-3x text-main' />
+                      <FontAwesomeIcon icon={faGamepad} className='fa-2x text-main' />
                       {/* <i className='fal fa-gamepad-alt fa-2x text-main'></i> */}
                       <p className="h2 my-2 text-main">19</p>
                       <p>Games</p>
                   </div>
                   <div className="col-6 col-md-4 my-5 text-center text-md-center">
-                      <FontAwesomeIcon icon={faBars} className='fa-3x text-main' />
+                      <FontAwesomeIcon icon={faBars} className='fa-2x text-main' />
                       {/* <i className='fal fa-stream fa-2x text-main'></i> */}
                       <p className="h2 my-2 text-main">19</p>
                       <p>Categories</p>
                   </div>
                   <div className="col-6 col-md-4 my-5 text-center text-md-end">
-                      <FontAwesomeIcon icon={faPlayCircle} className='fa-3x text-main' />
+                      <FontAwesomeIcon icon={faPlayCircle} className='fa-2x text-main' />
                       {/* <i className='fal fa-joystick fa-2x text-main'></i> */}
                       <p className="h2 my-2 text-main">51</p>
                       <p>Platforms</p>
                   </div>
                   <div className="col-6 col-md-4 my-5 text-center text-md-start">
-                      <FontAwesomeIcon icon={faUsers} className='fa-3x text-main' />
+                      <FontAwesomeIcon icon={faUsers} className='fa-2x text-main' />
                       {/* <i className='fal fa-users fa-2x text-main'></i> */}
                       <p className="h2 my-2 text-main">48674</p>
                       <p>Publishers</p>
                   </div>
                   <div className="col-6 col-md-4 my-5 text-center text-md-center">
-                      <FontAwesomeIcon icon={faTag} className='fa-3x text-main' />
+                      <FontAwesomeIcon icon={faTag} className='fa-2x text-main' />
                       {/* <i className='fal fa-tag fa-2x text-main'></i> */}
                       <p className="h2 my-2 text-main">7363</p>
                       <p>Tags</p>
                   </div>
                   <div className="col-6 col-md-4 my-5 text-center text-md-end">
-                      <FontAwesomeIcon icon={faHandsHelping} className='fa-3x text-main' />
+                      <FontAwesomeIcon icon={faHandsHelping} className='fa-2x text-main' />
                       {/* <i className='fal fa-hands-helping fa-2x text-main'></i> */}
                       <p className="h2 my-2 text-main">24935</p>
                       <p>Creaters</p>

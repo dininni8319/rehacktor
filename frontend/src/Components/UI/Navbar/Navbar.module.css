@@ -1,6 +1,7 @@
 .navbar-brand{
   color: cyan;
   text-decoration: none;
+  font-weight: bold;
 }
 
 .navbar {
