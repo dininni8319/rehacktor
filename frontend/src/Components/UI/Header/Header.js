@@ -6,8 +6,11 @@ export default function Header(params) {
     return (
         <header>
            <div className={classes.overlay}>
-           <h1 className="font-exan">REHACTOR</h1>
-          <p className="text-wrap">Explore Rehacktor, the only site that alloe you to discover new games and share experience with your friends!</p>
+               <div className="d-flex flex-column align-items-center justify-content-center h-100">
+                  <h1 className="font-exan text-main">REHACTOR</h1>
+                  <p>Explore Rehacktor, the only site that allow you to discover new games</p>
+                  <p>and share experience with your friends!</p>
+               </div>
            </div>
           
             <video playsInline autoPlay muted loop>

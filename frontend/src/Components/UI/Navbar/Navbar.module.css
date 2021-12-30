@@ -1,3 +1,8 @@
+.navbar-brand{
+  color: cyan;
+  text-decoration: none;
+}
+
 .navbar {
   background: linear-gradient(
     to right,
