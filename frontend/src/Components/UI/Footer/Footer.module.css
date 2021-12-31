@@ -1,3 +1,7 @@
+/* .backgroudFooter{
+ z-index: 12;
+} */
+
 .borderGradTop::after {
   position: absolute;
   content: "";

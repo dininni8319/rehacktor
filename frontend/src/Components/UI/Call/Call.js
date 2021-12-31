@@ -11,7 +11,7 @@ export default function Call() {
                 </video>
                 <div className="wrapper h-100">
                     <div className="row h-100 justify-content-center align-items-end pb-5">
-                        <div className={"col-12 text-center" + classes.links}></div>
+                        <div className={`${'col-12'} ${'text-center'}  ${classes.links}`}></div>
                         <button className="btn btn-info">Explore Now</button>
                     </div>
                 </div>

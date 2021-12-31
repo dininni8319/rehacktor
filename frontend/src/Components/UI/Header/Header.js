@@ -7,7 +7,7 @@ export default function Header(params) {
         <header>
            <div className={classes.overlay}>
                <div className="d-flex flex-column align-items-center justify-content-center h-100">
-                  <h1 className="font-exan text-main">REHACTOR</h1>
+                  <h1 className="font-exan text-main">REHACkTOR</h1>
                   <p>Explore Rehacktor, the only site that allow you to discover new games</p>
                   <p>and share experience with your friends!</p>
                </div>
