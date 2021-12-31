@@ -1,11 +1,11 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function Featured() {
     const [featured, setFeatured ] = useState(null);
 
     let apiKey = 'ad5b7cec7a4a46e0ab7b381e029adf29';
 
-    let mostPopularGame2019 = `https://api.rawg.io/api/games?dates=2019-01-01,2019-12-31&ordering=-added&key=${apiKey}`;
+    let mostPopularGame2019 = `https://api.rawg.io/api/games?dates=2010-01-01,2019-12-31&ordering=-added&key=${apiKey}`;
 
     // let rating = `https://api.rawg.io/api/games?dates=2001-01-01,2001-12-31ordering=-rating&key=${apiKey}`;
 
@@ -17,13 +17,38 @@ export default function Featured() {
     //  .then(resp => resp.json())
     //  .then(data => console.log(data, 'rating'))
 
-    fetch(mostPopularGame2019)
-      .then(resp => resp.json())
-      .then(data => {
-          console.log(data, 'test');
-          setFeatured(data)
-      })
-    
-    return <p>test</p>
+    useEffect(() => {
+         fetch(mostPopularGame2019)
+          .then(resp => resp.json())
+          .then(data => {
+              console.log(data.results.slice(0, 4), 'test');
+              setFeatured(data.results.slice(0, 4))
+          })
+    },[])
 
+    return (
+        <>
+          <div className="container">
+              <div className="row">
+                  {
+                   featured !== null && featured.map(el => {
+                          return (
+                            <div key={el.id} className="col-12 col-md-6 col-lg-3"
+                            >
+                            <div className="card m-2 bg-breen-light" >
+                               <img src={el.background_image} className="card-img-top" alt="..." />
+                                <div className="card-body">
+                                    <h5 className="card-title">{el.name} title</h5>
+                                    <p className="card-text">playtime: {el.playtime}</p>
+                                    <a href="#" className="btn btn-primary">Go somewhere</a>
+                                </div>
+                                </div>    
+                            </div>
+                              
+                      )})
+                  }
+              </div>
+          </div>
+        </>
+    )
 }
