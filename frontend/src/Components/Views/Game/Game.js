@@ -1,5 +1,6 @@
 import { useParams } from 'react-router';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Game() {
      
@@ -9,7 +10,7 @@ export default function Game() {
      let specificGame = `https://api.rawg.io/api/games/${slug}?&key=${apiKey}`;
 
      const [game, setGame]= useState(null);
-     
+     console.log(game);
      useEffect(() => {
         fetch(specificGame)
            .then(resp => resp.json())
@@ -41,11 +42,30 @@ export default function Game() {
                                  </div>
                                  <div className="row">
                                       <h3>Genres</h3>
-                                      {
-                                        game.genres && game.genres.map(el => 
-                                             <span key={el.id}>{el.name}</span>)
-                                      }
-                                 </div>
+                                      <div className='d-flex'>
+                                         { game.genres && game.genres.map(el => 
+                                                  <Link key={el.id} to={`/search/${el.slug}`} className='text-decoration-none mx-2'><button className="btn btn-outline-info mt-2">{el.name}</button></Link>
+                                             
+                                        )}
+                                      </div>
+                              </div>
+
+                                      <h3>Informations</h3>
+                                      <div className='d-flex'>
+                                         { game.genres && game.genres.map(el => 
+                                                  <Link key={el.id} to={`/search/${el.slug}`} className='text-decoration-none mx-2'><button className="btn btn-outline-info mt-2">{el.name}</button></Link>
+                                             
+                                        )}
+                                      </div>
+                             
+                             
+                                      <h3>Genres</h3>
+                                      <div className='d-flex'>
+                                         { game.genres && game.genres.map(el => 
+                                                  <Link key={el.id} to={`/search/${el.slug}`} className='text-decoration-none mx-2'><button className="btn btn-outline-info mt-2">{el.name}</button></Link>
+                                             
+                                        )}
+                                      </div>
       
                              </div>
                         </div>

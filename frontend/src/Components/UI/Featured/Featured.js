@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import classes from './Featured.module.css';
 
 export default function Featured() {
     const [featured, setFeatured ] = useState(null);
@@ -36,12 +37,13 @@ export default function Featured() {
                           return (
                             <div key={el.id} className="col-12 col-md-6 col-lg-3"
                             >
-                            <div className="card m-2 bg-transparent border-white" >
+                            <div className={` ${'card'} ${'m-2'} ${'bg-transparent'} ${'border-white'} ${classes['card-size']}`}>
                                <img src={el.background_image} className="card-img-top" alt="..." />
-                                <div className="card-body">
+                                <div className="card-body ">
                                     <p className="card-title">{el.name}</p>
                                     <p className="card-text">playtime: {el.playtime}</p>
-                                    <Link to={`/game/${el.slug}`}>{el.name}</Link>
+                                    <Link to={`/game/${el.slug}`} className=
+                                    'text-decoration-none'>{el.name}</Link>
                                 </div>
                                 </div>    
                             </div>
