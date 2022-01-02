@@ -5,7 +5,7 @@ import { faGamepad, faTag, faUsers, faPlayCircle, faBars, faHandsHelping } from 
 export default function Info() {
     return (
 
-          <div className={'container-fluid my-5' + classes["bg-info"]}>
+          <div className={`${'container-fluid'} ${'my-5'} ${classes["bg-info"]}`}>
               <div className="container">
                   <div className={"row px-3 pt-5" + classes.info}>
 
