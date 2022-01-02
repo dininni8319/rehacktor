@@ -3,11 +3,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGamepad, faTag, faUsers, faPlayCircle, faBars, faHandsHelping } from '@fortawesome/free-solid-svg-icons';
 
 export default function Info() {
+    
     return (
-
           <div className={`${'container-fluid'} ${'my-5'} ${classes["bg-info"]}`}>
               <div className="container">
-                  <div className={"row px-3 pt-5" + classes.info}>
+                  <div className={`${'row'} ${'px-3'} ${'pt-5'} ${classes.info}`}>
 
                   <div className="col-12 col-lg-4 my-5 px-3">
                           <h3 className={classes['info-title']}>
@@ -29,7 +29,7 @@ export default function Info() {
                       </div>
                   </div>
               </div>
-              <div className={"row px-3 pt-5" + classes.info}>
+              <div className={`${'px-3'} ${'row'} ${classes.info} ${'pt-5'}`}>
               <div className="col-6 col-md-4 my-5 text-center text-md-start">
                       <FontAwesomeIcon icon={faGamepad} className='fa-2x text-main' />
                       {/* <i className='fal fa-gamepad-alt fa-2x text-main'></i> */}
