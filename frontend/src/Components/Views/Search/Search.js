@@ -3,6 +3,10 @@ import { useEffect, useState } from 'react';
 import GenresList from '../../UI/GenresList/GenresList';
 import Card from '../../UI/Card/Card';
 import { useParams } from 'react-router';
+import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronCircleLeft, faChevronCircleRight } from '@fortawesome/free-solid-svg-icons';
+
 import Game from '../Game/Game';
 
 export default function Search() {
@@ -14,7 +18,8 @@ export default function Search() {
     let { num } = useParams();
     
     const [ games, setGames ] = useState(null)
-    console.log(games, 'test num 2 ');
+
+    const [ search, setSearch ] = useState(null)
     
     let apiKey = 'ad5b7cec7a4a46e0ab7b381e029adf29';
 
@@ -38,7 +43,7 @@ export default function Search() {
             //   console.log(data.results, 'test the results');
              setGames(data.results)
           })
-    },[])
+    },[genre, num])
 
     return (
           <div className={`${'container-fluid'} ${'py-5'} ${'min-vh-100'} ${classes['bg-info']}`}>
@@ -51,6 +56,35 @@ export default function Search() {
                     </div>
                 </div>
                 <div className="col-12 col-md-9 col-lg-10">
+                    <div className="row">
+                        <div className="col-12 col-md-6 col-lg-4">
+                            <div className='input-group mb-3'>
+                                <input type='text' 
+                                  className=' mt-5 form-control bg-transparent border-0 border-bottom border-info rounded-0'
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    <div className="row justify-content-between mb-5 mt-5">
+                        <div className='col-2'>
+                            {/* <Link to={`/search/${genre}/${+num  > 0 ? +num - 1 : 0}`} className="text-decoration-none">Next</Link> */}
+                            { 
+                             num > 1 ? <Link to={`/search/${genre}/${+num - 1}`} className="text-decoration-none text-white"> 
+                                    <FontAwesomeIcon icon={faChevronCircleLeft} className='fa-2x text-white text-decoration-none'/>
+                             </Link> : ""
+
+                            }
+                        </div>
+                        <div className="col-2">
+                            {/* <Link to={`/search/${genre}/${+num < 11 ? +num + 1 : 11}`} className="text-decoration-none">Next</Link> */}
+                            { 
+                             num < 11 ? <Link to={`/search/${genre}/${+num + 1}`} className="text-decoration-none text-white">
+                                 <FontAwesomeIcon icon={faChevronCircleRight} className='fa-2x text-white text-decoration-none'/> {num} 
+                             </Link> : ""
+
+                            }
+                        </div>
+                    </div>
                     <div className="row">
                         {
                            games && games.map(game => {

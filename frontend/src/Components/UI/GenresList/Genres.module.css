@@ -4,7 +4,7 @@
     overflow-y: scroll;
 }
 
-.genres-wrapper > button:hover {
-  padding-left: 10px;
+.genres-wrapper  button:hover {
+  padding-left: 30px;
   transition: 0.3s;
 }

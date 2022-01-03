@@ -27,9 +27,30 @@ export default function Footer() {
                     </p>
                 </div>
                 <div className="col-12 col-md-4 py-3 py-md-5">
-                    <a href='https://www.aulab.it' className='text-decoration-none text-white me-3'>
-                    <FontAwesomeIcon icon={faLink} className='fa-1x' />
-                    </a>
+                    <h3>Link Social</h3>
+                    <ul className='d-flex list-style-none' style={{listStyle: 'none'}}>
+                        <li>
+                          <a href='https://www.aulab.it' className='text-decoration-none text-white me-3'>
+                             Aulab
+                          </a>
+                        </li>
+                        <li>
+                           <a href='https://www.facebook.com' className='text-decoration-none text-white me-3'>
+                               Facebook
+                            </a>
+                        </li>
+                        <li>
+                           <a href='https://www.instagram.it' className='text-decoration-none text-white me-3'>
+                              Instagram
+                           </a>
+                       </li>
+                       <li>
+                           <a href='https://www.twetter.it' className='text-decoration-none text-white me-3'>
+                              Twetter
+                           </a>
+                       </li>
+                    </ul>
+                    
                 </div>
                   
               </div>

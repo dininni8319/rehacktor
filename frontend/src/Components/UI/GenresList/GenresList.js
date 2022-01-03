@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import classes from './Genres.module.css';
 
 export default function GenresList(props) {
@@ -5,7 +6,12 @@ export default function GenresList(props) {
         <div className={classes['genres-wrapper']}>
             {
                 props.data.map(genre => {
-                        return <button key={genre.id} className="btn btn-outline-info rounded-0 d-block w-100 mb-2 text-start">{genre.name}</button>
+                  return (
+                      <Link className='text-decoration-none' to={`/search/${genre.slug}/1`}>
+                          <button key={genre.id} className="btn btn-outline-info rounded-0 d-block w-100 mb-2 text-start">{genre.name}</button>
+                      </Link>
+
+                  )
                 })
             }
         </div>
