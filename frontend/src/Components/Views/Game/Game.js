@@ -40,33 +40,40 @@ export default function Game() {
                                  <div className="col-12 col-md-6"> 
                                         <img className='img-fluid' src={game.background_image} alt={game.name}/>  
                                  </div>
-                                 <div className="row">
-                                      <h3>Genres</h3>
-                                      <div className='d-flex'>
-                                         { game.genres && game.genres.map(el => 
-                                                  <Link key={el.id} to={`/search/${el.slug}`} className='text-decoration-none mx-2'><button className="btn btn-outline-info mt-2">{el.name}</button></Link>
-                                             
-                                        )}
+                                 <div className="row mt-5">
+                                      <div className="col-12 col-md-6 col-lg-3">
+                                             <h3>Genres</h3>
+                                             <div className='d-flex'>
+                                                  { game.genres && game.genres.map(el => 
+                                                            <Link key={el.id} to={`/search/${el.slug}`} className='text-decoration-none mx-2'><button className="btn btn-outline-info mt-2">{el.name}</button></Link>
+                                                       
+                                                  )}
+                                             </div>      
                                       </div>
-                              </div>
 
-                                      <h3>Informations</h3>
-                                      <div className='d-flex'>
-                                         { game.genres && game.genres.map(el => 
-                                                  <Link key={el.id} to={`/search/${el.slug}`} className='text-decoration-none mx-2'><button className="btn btn-outline-info mt-2">{el.name}</button></Link>
-                                             
-                                        )}
+                                      <div className="col-12 col-md-6 col-lg-4">
+                                             <h3>Informations</h3>
+                                             <div className='d-flex'>
+                                                  { game.genres && game.genres.map(el => 
+                                                            <Link key={el.id} to={`/search/${el.slug}`} className='text-decoration-none mx-2'><button className="btn btn-outline-info mt-2">{el.name}</button></Link>
+                                                       
+                                                  )}
+                                             </div>
+
                                       </div>
-                             
-                             
-                                      <h3>Genres</h3>
-                                      <div className='d-flex'>
-                                         { game.genres && game.genres.map(el => 
-                                                  <Link key={el.id} to={`/search/${el.slug}`} className='text-decoration-none mx-2'><button className="btn btn-outline-info mt-2">{el.name}</button></Link>
-                                             
-                                        )}
+                                      <div className="col-12 col-md-6 col-lg-4">
+                                      <h3>User Streaming</h3>
+                                           <ul>
+                                                <li>Salvatore Dininni</li>
+                                                <li>Sandro Corciulo</li>
+                                                <li>Antonio Donofrio</li>
+                                                <li>Giancarlo Vinci</li>
+                                           </ul>
+
                                       </div>
-      
+                                  
+                              </div>
+                             
                              </div>
                         </div>
                     </div>
