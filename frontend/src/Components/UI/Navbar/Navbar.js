@@ -21,10 +21,10 @@ export default function Navbar() {
                 <Link className="nav-link active" aria-current="page" to="/">Home</Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/game">Search</Link>
+                <Link className="nav-link" to="/search">Search</Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/search">Game</Link>
+                <Link className="nav-link" to="/game">Game</Link>
               </li>
             </ul>
           </div>
