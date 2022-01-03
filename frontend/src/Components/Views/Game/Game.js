@@ -52,17 +52,21 @@ export default function Game() {
                                       </div>
 
                                       <div className="col-12 col-md-6 col-lg-4">
-                                             <h3>Informations</h3>
+                                             <h3>Rating</h3>
                                              <div className='d-flex'>
-                                                  { game.genres && game.genres.map(el => 
-                                                            <Link key={el.id} to={`/search/${el.slug}`} className='text-decoration-none mx-2'><button className="btn btn-outline-info mt-2">{el.name}</button></Link>
+                                                  { game.ratings && game.ratings.map(el => {
+                                                       return (
+                                                            <span key={el.id}  className='text-decoration-none mx-2 text-white text-uppercase'>{el.title}</span>
+                                                       )
+                                                  }
+                                                           
                                                        
                                                   )}
                                              </div>
 
                                       </div>
                                       <div className="col-12 col-md-6 col-lg-4">
-                                      <h3>User Streaming</h3>
+                                      <h3>Streamers</h3>
                                            <ul>
                                                 <li>Salvatore Dininni</li>
                                                 <li>Sandro Corciulo</li>
