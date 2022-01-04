@@ -1,10 +1,17 @@
-import classes from './SignUp.module.css';
+import { AuthContext } from './../../../Contexts/Auth';
+import { useContext } from 'react';
 
-export default function SignUp(params) {
-   
+export default function SignUp() {
+
+    let { login } = useContext(AuthContext)
+    const signUp = (event) => {
+        event.preventDefault()
+        console.log('ok');
+        login("Salvo", 'que', 122)
+    }
     return (
-        <>
-            <form className={`${'sign-form'}`}>
+        
+            <form className={`${'sign-form'}`} onSubmit={signUp}>
                 <div className={`${'sign-top'}`}></div>
                 <div className={`${'sign-bottom'}`}></div>
                 <div className="mb-5">
@@ -19,7 +26,6 @@ export default function SignUp(params) {
                     <button type="submit" className="btn btn-outline-info px-5 rounded-0">Login</button>
                 </div>
             </form>
-            <p> Not a user?Register now!</p>
-        </>
+
     )
 }

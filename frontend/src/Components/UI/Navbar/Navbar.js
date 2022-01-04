@@ -1,9 +1,14 @@
 import classes from './Navbar.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { faSpinner, faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 
+import { AuthContext } from '../../../Contexts/Auth';
+import { useContext } from 'react';
+
 export default function Navbar() {
+
+    const { user } = useContext(AuthContext)
     return (
         
         <nav className={`${'navbar'} ${'navbar-expand-lg'} ${'navbar-dark'} ${'bg-dark'} ${classes.navbar}`  }>
@@ -16,7 +21,7 @@ export default function Navbar() {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
-            <ul className="navbar-nav">
+            <ul className="navbar-nav d-flex align-items-center">
               <li className="nav-item">
                 <Link className="nav-link active" aria-current="page" to="/">Home</Link>
               </li>
@@ -29,6 +34,15 @@ export default function Navbar() {
               <li className="nav-item">
                 <Link className="nav-link" to="/sign">Sign</Link>
               </li>
+
+              {
+                user && (
+                  <li className='nav-item'>
+                      <FontAwesomeIcon icon={faUserCircle} className='fa-1x mx-1' />
+                      { user.username}
+                  </li>
+                )
+              }
             </ul>
           </div>
           <div className={classes.navLogo}></div>
