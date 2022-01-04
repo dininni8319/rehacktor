@@ -1,4 +1,5 @@
-
+include ./.env
+export
 # target: 
 #     @echo "test0"
 #     @echo "test1"

@@ -2,23 +2,16 @@ import { useEffect, useState } from 'react';
 // import { Link } from 'react-router-dom';
 // import classes from './Featured.module.css';
 import Card from '../Card/Card';
+import { useContext } from 'react';
+import { ConfigContext } from './../../../Contexts/Config/index';
 
 export default function Featured() {
     const [featured, setFeatured ] = useState(null);
 
-    let apiKey = 'ad5b7cec7a4a46e0ab7b381e029adf29';
-
-    let mostPopularGame2019 = `https://api.rawg.io/api/games?dates=2010-01-01,2019-12-31&ordering=-added&key=${apiKey}`;
-
-    // let rating = `https://api.rawg.io/api/games?dates=2001-01-01,2001-12-31ordering=-rating&key=${apiKey}`;
-
-    // fetch(`https://api.rawg.io/api/games?key=ad5b7cec7a4a46e0ab7b381e029adf29&dates=2019-09-01,2019-09-30&platforms=18,1,7`)
-    //  .then(resp => resp.json())
-    //  .then(data => console.log(data, 'rating'))
-
-    // fetch(rating)
-    //  .then(resp => resp.json())
-    //  .then(data => console.log(data, 'rating'))
+    let { api_urls, api_secrets } = useContext(ConfigContext);
+    // console.log(api_urls, api_secrets, 'test usecon');
+    let mostPopularGame2019 = `${api_urls.games}/api/games?dates=2010-01-01,2019-12-31&ordering=-added&key=${api_secrets.games}`;
+    
 
     useEffect(() => {
          fetch(mostPopularGame2019)

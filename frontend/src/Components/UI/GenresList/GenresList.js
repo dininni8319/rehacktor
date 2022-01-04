@@ -7,8 +7,8 @@ export default function GenresList(props) {
             {
                 props.data.map(genre => {
                   return (
-                      <Link className='text-decoration-none' to={`/search/${genre.slug}/1`}>
-                          <button key={genre.id} className="btn btn-outline-info rounded-0 d-block w-100 mb-2 text-start">{genre.name}</button>
+                      <Link key={genre.id} className='text-decoration-none' to={`/search/${genre.slug}/1`}>
+                          <button  className="btn btn-outline-info rounded-0 d-block w-100 mb-2 text-start">{genre.name}</button>
                       </Link>
 
                   )

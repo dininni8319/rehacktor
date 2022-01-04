@@ -5,7 +5,8 @@ import Card from '../../UI/Card/Card';
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronCircleLeft, faChevronCircleRight } from '@fortawesome/free-solid-svg-icons';
+import { faChevronCircleLeft, faChevronCircleRight, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import Loader from '../../UI/Loader/Loader';
 
 import Game from '../Game/Game';
 
@@ -19,7 +20,7 @@ export default function Search() {
     
     const [ games, setGames ] = useState(null)
 
-    const [ search, setSearch ] = useState(null)
+    const [ searched, setSearched ] = useState('')
     
     let apiKey = 'ad5b7cec7a4a46e0ab7b381e029adf29';
 
@@ -45,6 +46,15 @@ export default function Search() {
           })
     },[genre, num])
 
+    useEffect(() => {
+
+        if(searched.length > 4) {
+            fetch(`https://api.rawg.io/api/games?&key=${apiKey}&page_size=12&search=${searched}&search_precise=true`)
+            .then(response => response.json())
+            .then(data => setGames(data.results))
+        }
+    },[searched])
+
     return (
           <div className={`${'container-fluid'} ${'py-5'} ${'min-vh-100'} ${classes['bg-info']}`}>
               <div className="row">
@@ -59,35 +69,47 @@ export default function Search() {
                     <div className="row">
                         <div className="col-12 col-md-6 col-lg-4">
                             <div className='input-group mb-3'>
-                                <input type='text' 
-                                  className=' mt-5 form-control bg-transparent border-0 border-bottom border-info rounded-0'
+                                <input type='text'
+                                  placeholder="Search by name" 
+                                  className='mt-5 form-control bg-transparent border-0 border-bottom border-info rounded-0 text-white'
+                                  onChange={(ev) => setSearched(ev.target.value)}
+                                  value={searched}
                                 />
+                                <button className="btn border-0" type='button'>
+                                  <FontAwesomeIcon icon={faChevronRight} className='fa-1x text-white text-decoration-none pb-0'/>  
+                                </button>
+                                {/* {searched} */}
                             </div>
                         </div>
                     </div>
-                    <div className="row justify-content-between mb-5 mt-5">
-                        <div className='col-2'>
-                            {/* <Link to={`/search/${genre}/${+num  > 0 ? +num - 1 : 0}`} className="text-decoration-none">Next</Link> */}
-                            { 
-                             num > 1 ? <Link to={`/search/${genre}/${+num - 1}`} className="text-decoration-none text-white"> 
-                                    <FontAwesomeIcon icon={faChevronCircleLeft} className='fa-2x text-white text-decoration-none'/>
-                             </Link> : ""
+                    {
+                        !searched && (
+                                <div className="row justify-content-between mb-5 mt-5">
+                                <div className='col-2'>
+                                    {/* <Link to={`/search/${genre}/${+num  > 0 ? +num - 1 : 0}`} className="text-decoration-none">Next</Link> */}
+                                    { 
+                                    num > 1 ? <Link to={`/search/${genre}/${+num - 1}`} className="text-decoration-none text-white"> 
+                                            <FontAwesomeIcon icon={faChevronCircleLeft} className='fa-2x text-white text-decoration-none'/>
+                                    </Link> : ""
 
-                            }
-                        </div>
-                        <div className="col-2">
-                            {/* <Link to={`/search/${genre}/${+num < 11 ? +num + 1 : 11}`} className="text-decoration-none">Next</Link> */}
-                            { 
-                             num < 11 ? <Link to={`/search/${genre}/${+num + 1}`} className="text-decoration-none text-white">
-                                 <FontAwesomeIcon icon={faChevronCircleRight} className='fa-2x text-white text-decoration-none'/> {num} 
-                             </Link> : ""
+                                    }
+                                </div>
+                                <div className="col-2">
+                                    {/* <Link to={`/search/${genre}/${+num < 11 ? +num + 1 : 11}`} className="text-decoration-none">Next</Link> */}
+                                    { 
+                                    num < 11 ? <Link to={`/search/${genre}/${+num + 1}`} className="text-decoration-none text-white">
+                                        <FontAwesomeIcon icon={faChevronCircleRight} className='fa-2x text-white text-decoration-none'/> {num} 
+                                    </Link> : ""
 
-                            }
-                        </div>
-                    </div>
+                                    }
+                                </div>
+                            </div>
+
+                        )
+                    }
                     <div className="row">
                         {
-                           games && games.map(game => {
+                           games ? games.map(game => {
                                return (
                                     <div className='col-12 col-md-6 col-lg-4 mb-5' key={game.id}>
                                         <Card 
@@ -98,7 +120,8 @@ export default function Search() {
                                         />
                                     </div>
                                )
-                           })
+                           }) : <Loader />
+
                         }
                     </div>
                   </div>

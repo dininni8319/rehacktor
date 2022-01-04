@@ -6,20 +6,23 @@ import Navbar from './Components/UI/Navbar/Navbar';
 import Footer from './Components/UI/Footer/Footer';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 
+import { ConfigProvider } from './Contexts/Config/index';
+
 function App() {
   return (
-      <Router>
-        <Navbar />
+      <ConfigProvider>
+          <Router>
+              <Navbar />
 
-        <Routes>
-          <Route path='/' element={<Home/>} />
-          <Route path='/search/:genre/:num' element={<Search/>} />
-          <Route path='/game/:slug' element={<Game/>} />
-        </Routes>
+              <Routes>
+                <Route path='/' element={<Home/>} />
+                <Route path='/search/:genre/:num' element={<Search/>} />
+                <Route path='/game/:slug' element={<Game/>} />
+              </Routes>
 
-        <Footer />
-
-      </Router>
+              <Footer />
+          </Router>
+      </ConfigProvider>
   );
 }
 

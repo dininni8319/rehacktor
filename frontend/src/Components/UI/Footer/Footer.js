@@ -40,13 +40,13 @@ export default function Footer() {
                             </a>
                         </li>
                         <li>
-                           <a href='https://www.instagram.it' className='text-decoration-none text-white me-3'>
+                           <a href='https://www.instagram.com' className='text-decoration-none text-white me-3'>
                               Instagram
                            </a>
                        </li>
                        <li>
-                           <a href='https://www.twetter.it' className='text-decoration-none text-white me-3'>
-                              Twetter
+                           <a href='https://www.twitter.com' className='text-decoration-none text-white me-3'>
+                              Twitter
                            </a>
                        </li>
                     </ul>
