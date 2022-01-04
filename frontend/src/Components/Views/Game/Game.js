@@ -10,7 +10,7 @@ export default function Game() {
      let { slug } = useParams();
 
      let { api_urls, api_secrets } = useContext(ConfigContext);
-     console.log(api_urls, api_secrets, 'test usecon');
+
      const [game, setGame] = useState(null);
 
      useEffect(() => {

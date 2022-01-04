@@ -9,7 +9,7 @@ export default function Featured() {
     const [featured, setFeatured ] = useState(null);
 
     let { api_urls, api_secrets } = useContext(ConfigContext);
-    // console.log(api_urls, api_secrets, 'test usecon');
+
     let mostPopularGame2019 = `${api_urls.games}/api/games?dates=2010-01-01,2019-12-31&ordering=-added&key=${api_secrets.games}`;
     
 

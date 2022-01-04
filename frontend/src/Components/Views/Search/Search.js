@@ -7,8 +7,10 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronCircleLeft, faChevronCircleRight, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import Loader from '../../UI/Loader/Loader';
+import { useContext } from 'react';
+import { ConfigContext } from '../../../Contexts/Config/index';
 
-import Game from '../Game/Game';
+// import Game from '../Game/Game';
 
 export default function Search() {
      
@@ -18,15 +20,15 @@ export default function Search() {
 
     let { num } = useParams();
     
-    const [ games, setGames ] = useState(null)
+    const [ games, setGames ] = useState(null);
 
-    const [ searched, setSearched ] = useState('')
-    
-    let apiKey = 'ad5b7cec7a4a46e0ab7b381e029adf29';
+    const [ searched, setSearched ] = useState('');
 
-    let searchGenre = `https://api.rawg.io/api/genres?&key=${apiKey}`;
+    let { api_urls, api_secrets } = useContext(ConfigContext);
 
-    let searchGame = `https://api.rawg.io/api/games?&key=${apiKey}&genres=${genre}&page=${num}&page_size=12`;
+    let searchGenre = `${api_urls.games}/api/genres?&key=${api_secrets.games}`;
+
+    let searchGame = `${api_urls.games}/api/games?&key=${api_secrets.games}&genres=${genre}&page=${num}&page_size=12`;
 
     useEffect(() => {
         fetch(searchGenre)
@@ -38,7 +40,7 @@ export default function Search() {
 
 
     useEffect(() => {
-        fetch(`https://api.rawg.io/api/games?&key=${apiKey}&genres=${genre}&page=${num}&page_size=12`)
+        fetch(`${api_urls.games}/api/games?&key=${api_secrets.games}&genres=${genre}&page=${num}&page_size=12`)
           .then(resp => resp.json())
           .then(data => {
             //   console.log(data.results, 'test the results');
@@ -49,7 +51,7 @@ export default function Search() {
     useEffect(() => {
 
         if(searched.length > 4) {
-            fetch(`https://api.rawg.io/api/games?&key=${apiKey}&page_size=12&search=${searched}&search_precise=true`)
+            fetch(`${api_urls.games}/api/games?&key=${api_secrets.games}&page_size=12&search=${searched}&search_precise=true`)
             .then(response => response.json())
             .then(data => setGames(data.results))
         }
