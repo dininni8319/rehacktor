@@ -23,8 +23,11 @@ export default function Navbar() {
               <li className="nav-item">
                 <Link className="nav-link" to="/search/action/1">Search</Link>
               </li>
-              <li className="nav-item">
+              {/* <li className="nav-item">
                 <Link className="nav-link" to="/game">Game</Link>
+              </li> */}
+              <li className="nav-item">
+                <Link className="nav-link" to="/sign">Sign</Link>
               </li>
             </ul>
           </div>

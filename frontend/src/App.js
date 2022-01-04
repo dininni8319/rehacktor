@@ -4,6 +4,8 @@ import Game from './Components/Views/Game/Game';
 import Search from './Components/Views/Search/Search';
 import Navbar from './Components/UI/Navbar/Navbar';
 import Footer from './Components/UI/Footer/Footer';
+import Sign from './Components/Views/Sign/Sign';
+
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 
 import { ConfigProvider } from './Contexts/Config/index';
@@ -15,9 +17,10 @@ function App() {
               <Navbar />
 
               <Routes>
-                <Route path='/' element={<Home/>} />
-                <Route path='/search/:genre/:num' element={<Search/>} />
-                <Route path='/game/:slug' element={<Game/>} />
+                <Route path='/' element={<Home />} />
+                <Route path='/search/:genre/:num' element={<Search />} />
+                <Route path='/game/:slug' element={<Game />} />
+                <Route path='/sign' element={<Sign />} />
               </Routes>
 
               <Footer />
