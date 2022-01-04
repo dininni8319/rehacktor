@@ -7,6 +7,7 @@ export default function Info() {
     return (
           <div className={`${'container-fluid'} ${'my-5'} ${classes["bg-info"]}`}>
               <div className="container">
+              <div className={classes.overlay}></div>
                   <div className={`${'row'} ${'px-3'} ${'pt-5'} ${classes.info}`}>
 
                   <div className="col-12 col-lg-4 my-5 px-3">
