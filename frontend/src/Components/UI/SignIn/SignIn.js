@@ -1,7 +1,7 @@
 import useInput from '../../../Hooks/useInput';
 
-import { AuthContext } from '../../../Contexts/Auth';
-import { ConfigContext } from '../../../Contexts/Config';
+import { AuthContext } from './../../../Contexts/Auth';
+import { ConfigContext } from './../../../Contexts/Config';
 
 import { useContext, useState } from 'react';
 
@@ -14,7 +14,7 @@ export default function SignIn() {
     let { api_urls } = useContext(ConfigContext)
     let { login } = useContext(AuthContext)
 
-    const singIn = (event) => {
+    const Login = event => {
 
         event.preventDefault()
 
@@ -49,7 +49,7 @@ export default function SignIn() {
 
     return (
         <>
-            <form className={`${'sign-form'}`} onSubmit={signIn}>
+            <form  className={`${'sign-form'}`} onSubmit={Login}>
                 <div className={`${'sign-top'}`}></div>
                 <div className={`${'sign-bottom'}`}></div>
                 <div className="mb-5">
