@@ -1,2 +1,14 @@
-comando di autonomazione:  make dev  
-dev specifica la tipologia di comando
+Comandi di utonomazione.
+
+make dev = specifica la tipologia di comando, avvia entrambi le applicazioni, backend and frontend, con un unico commando di autonomazione.
+make freshdb = command that resets the db
+make install = performs installations setup
+
+## API calls examples
+
+### register 
+ http POST http://localhost:8001/api/users/register name=Salvatore email=s.dininni@yahoo.com password=12345678 password_confirmation=12345678
+
+### login 
+
+ http POST http://localhost:8001/api/users/login email=s.dininni@yahoo.com password=12345678
