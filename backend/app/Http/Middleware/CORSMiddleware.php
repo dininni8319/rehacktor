@@ -27,6 +27,8 @@ class CORSMiddleware
         $response->header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS, PATCH');
         $response->header('Access-Control-Allow-Headers', $request->header('Access-Control-Request-Headers'));
         $response->header('Access-Control-Allow-Credentials', 'true');
+        $response->header('Access', 'application/json');
+        $response->header('Access-Control-Expose-Headers', 'location');
         return $response;
     }
 }
