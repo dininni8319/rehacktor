@@ -12,3 +12,12 @@ make install = performs installations setup
 ### login 
 
  http POST http://localhost:8001/api/users/login email=s.dininni@yahoo.com password=12345678
+
+### logout
+
+http POST http://localhost:8001/api/users/logout Authorization:Bearer\ eii...tr3    -> token
+
+### user profile 
+
+http GET http://localhost:8001/api/users/view-profile Authorization:Bearer\ eii...tr3    -> token
+

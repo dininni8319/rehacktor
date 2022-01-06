@@ -22,7 +22,7 @@ use App\Http\Controllers\UserController;
 Route::group(['prefix' => 'users', 'middleware' => 'CORS'], function ($router){
      Route::post('/register', [UserController::class, 'register'])->name('register.user');
      Route::post('/login', [UserController::class, 'login'])->name('login.user');
-     Route::post('/view-profile', [UserController::class, 'viewProfile'])->name('profile.user');
+     Route::get('/view-profile', [UserController::class, 'viewProfile'])->name('profile.user');
      Route::post('/logout', [UserController::class, 'logout'])->name('logout.user');
 });
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -93,4 +94,59 @@ class UserController extends Controller
         }
     }
 
+    public function logout(){
+        $user = Auth::guard('api')->user(); // the user must be authenticated 
+        
+        if (!$user) {
+
+            $responseMessage = 'Invalid Bearer Token';
+
+            return response()->json([
+
+                'success' => false,
+                'message' => $responseMessage,
+                'error' => $responseMessage
+
+            ], 403); //403 Forbidden
+        }
+
+        $token = $user->token();
+
+        $token->revoke();
+
+        $responseMessage = 'successfully logged out';
+
+        return response()->json([
+            'success' => true,
+            'message' => $responseMessage
+        ], 200);
+
+    }
+    public function viewProfile(){
+        $user = Auth::guard('api')->user(); // the user must be authenticated 
+        
+        if (!$user) {
+
+            $responseMessage = 'Invalid Bearer Token';
+
+            return response()->json([
+
+                'success' => false,
+                'message' => $responseMessage,
+                'error' => $responseMessage
+
+            ], 403); //403 Forbidden
+        }
+
+        $responseMessage = 'user profile';
+
+        return response()->json([
+
+            'success' => true,
+            'message' => $responseMessage,
+            'data' => $user
+        
+        ], 200);
+
+    }
 }
