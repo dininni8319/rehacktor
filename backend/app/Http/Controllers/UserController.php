@@ -25,6 +25,7 @@ class UserController extends Controller
                   'message' => $validator->messages()->toArray()
             ],400); //bad request
         }
+        
         User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -41,6 +42,9 @@ class UserController extends Controller
     
     public function login(Request $request) {
 
+        // var_dump($request->all());
+        // dd($request->all());
+        // return '';
         $validator = Validator::make($request->all(),[
             'email' => 'required|string|email',
             'password' => 'required|min:6', 

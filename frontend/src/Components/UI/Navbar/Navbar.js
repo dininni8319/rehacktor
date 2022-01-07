@@ -9,6 +9,7 @@ import { useContext } from 'react';
 export default function Navbar() {
 
     const { user } = useContext(AuthContext)
+    // console.log(user, 'test');
     return (
         
         <nav className={`${'navbar'} ${'navbar-expand-lg'} ${'navbar-dark'} ${'bg-dark'} ${classes.navbar}`  }>
@@ -39,7 +40,7 @@ export default function Navbar() {
                 user && (
                   <li className='nav-item'>
                       <FontAwesomeIcon icon={faUserCircle} className='fa-1x mx-1' />
-                      { user.username}
+                      { user.username ? user.username : '' }
                   </li>
                 )
               }

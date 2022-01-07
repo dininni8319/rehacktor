@@ -6,12 +6,15 @@ make install = performs installations setup
 
 ## API calls examples
 
+###To test httpie
+https httpie.io/hello
+
 ### register 
- http POST http://localhost:8001/api/users/register name=Salvatore email=s.dininni@yahoo.com password=12345678 password_confirmation=12345678
+http POST http://localhost:8001/api/users/register name=Salvatore email=s.dininni@yahoo.com password=12345678 password_confirmation=12345678
 
 ### login 
 
- http POST http://localhost:8001/api/users/login email=s.dininni@yahoo.com password=12345678
+http POST http://localhost:8001/api/users/login email=s.dininni@yahoo.com password=12345678
 
 ### logout
 

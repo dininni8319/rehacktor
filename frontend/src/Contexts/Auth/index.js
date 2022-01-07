@@ -4,6 +4,7 @@ import { ConfigContext, configContext } from './../Config';
 export const AuthContext = createContext();
 
 export function AuthProvider(props) {
+    
     const initialUser = localStorage.getItem('user')
 
     let {api_urls} = useContext(ConfigContext)
