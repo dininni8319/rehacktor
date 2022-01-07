@@ -32,9 +32,12 @@ export default function Navbar() {
               {/* <li className="nav-item">
                 <Link className="nav-link" to="/game">Game</Link>
               </li> */}
-              <li className="nav-item">
-                <Link className="nav-link" to="/sign">Sign</Link>
+              {
+                user === null && <li className="nav-item">
+                <Link className="nav-link" to="/sign">Sign In</Link>
               </li>
+              }
+
 
               {
                 user && (
