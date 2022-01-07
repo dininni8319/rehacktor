@@ -1,6 +1,6 @@
 import classes from './Navbar.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSpinner, faUserCircle } from '@fortawesome/free-solid-svg-icons';
+import { faSpinner, faUserCircle, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 
 import { AuthContext } from '../../../Contexts/Auth';
@@ -8,7 +8,7 @@ import { useContext } from 'react';
 
 export default function Navbar() {
 
-    const { user } = useContext(AuthContext)
+    const { user, logout } = useContext(AuthContext)
     // console.log(user, 'test');
     return (
         
@@ -35,16 +35,27 @@ export default function Navbar() {
               {
                 user === null && <li className="nav-item">
                 <Link className="nav-link" to="/sign">Sign In</Link>
-              </li>
+               </li>
               }
-
 
               {
                 user && (
-                  <li className='nav-item'>
-                      <FontAwesomeIcon icon={faUserCircle} className='fa-1x mx-1' />
-                      { user.username ? user.username : '' }
-                  </li>
+                  <>
+                      <li className='nav-item'>
+                          <Link to='/profile' className='text-decoration-none text-white d-flex me-2'>
+                            <FontAwesomeIcon icon={faUserCircle} className='fa-1x mx-1 text-warning'></FontAwesomeIcon>
+                            { user.username ? user.username : '' }
+                            
+                          </Link>
+                      </li>
+                      <li className='nav-item'>
+                          <button className='text-decoration-none text-white d-flex me-2 bg-transparent' onClick={logout}>
+                          <FontAwesomeIcon icon={faSignOutAlt} className='fa-1x mx-1 text-main'></FontAwesomeIcon>
+                          </button>
+                      </li>
+                  
+                  
+                  </>
                 )
               }
             </ul>

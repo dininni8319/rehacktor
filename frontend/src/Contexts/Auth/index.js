@@ -20,8 +20,21 @@ export function AuthProvider(props) {
         setUser(obj)
         localStorage.setItem('user', JSON.stringify(obj))
     }
+
+    const logout = () => {
+        fetch(`${api_urls.backend}/api/users/logout`, {
+            method: 'POST',
+            headers: {
+                Authorization: `Bearer ${user.token}`
+            },
+        })
+         .then(() => {
+             localStorage.removeItem('user')
+             setUser(null)
+         })
+    }
     return (
-        <AuthContext.Provider value={{login, user}}>
+        <AuthContext.Provider value={{user,login, logout}}>
             {props.children}
         </AuthContext.Provider>
     )
