@@ -4,12 +4,16 @@ import { faSpinner, faUserCircle, faSignOutAlt } from '@fortawesome/free-solid-s
 import { Link } from 'react-router-dom';
 
 import { AuthContext } from '../../../Contexts/Auth';
-import { useContext } from 'react';
+import { useState, useContext } from 'react';
+import Modal from '../Modal/Modal';
 
 export default function Navbar() {
-
+   
     const { user, logout } = useContext(AuthContext)
-    // console.log(user, 'test');
+    
+    const [ modal, setModal ] = useState(false)
+    
+    const closeModal = () => setModal(false)
     return (
         
         <nav className={`${'navbar'} ${'navbar-expand-lg'} ${'navbar-dark'} ${'bg-dark'} ${classes.navbar}`  }>
@@ -34,7 +38,7 @@ export default function Navbar() {
               </li> */}
               {
                 user === null && <li className="nav-item">
-                <Link className="nav-link" to="/sign">Sign In</Link>
+                <Link className="nav-link" to="/sign">Login</Link>
                </li>
               }
 
@@ -42,6 +46,14 @@ export default function Navbar() {
                 user && (
                   <>
                       <li className='nav-item'>
+
+                          {modal && <Modal  closeModal={closeModal} 
+                            title='O no...' 
+                            message='Vuoi gia lasciarci, ricorda che eventuali streeming in corso saranno interrotti' 
+                            confirmMessage='Esci'
+                            declineMessage='Rimani sulla pagina' 
+                            action={logout}
+                          />}  
                           <Link to='/profile' className='text-decoration-none text-white d-flex me-2'>
                             <FontAwesomeIcon icon={faUserCircle} className='fa-1x mx-1 text-warning'></FontAwesomeIcon>
                             { user.username ? user.username : '' }
@@ -49,11 +61,10 @@ export default function Navbar() {
                           </Link>
                       </li>
                       <li className='nav-item'>
-                          <button className='text-decoration-none text-white d-flex me-2 bg-transparent' onClick={logout}>
+                          <button className='text-decoration-none text-white d-flex me-2 bg-transparent' onClick={() => setModal(true)}>
                           <FontAwesomeIcon icon={faSignOutAlt} className='fa-1x mx-1 text-main'></FontAwesomeIcon>
                           </button>
                       </li>
-                  
                   
                   </>
                 )
