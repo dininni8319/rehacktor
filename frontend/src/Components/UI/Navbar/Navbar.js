@@ -14,6 +14,7 @@ export default function Navbar() {
     const [ modal, setModal ] = useState(false)
     
     const closeModal = () => setModal(false)
+
     return (
         
         <nav className={`${'navbar'} ${'navbar-expand-lg'} ${'navbar-dark'} ${'bg-dark'} ${classes.navbar}`  }>
@@ -47,7 +48,8 @@ export default function Navbar() {
                   <>
                       <li className='nav-item'>
 
-                          {modal && <Modal  closeModal={closeModal} 
+                          {modal && <Modal  
+                            closeModal={closeModal} 
                             title='O no...' 
                             message='Vuoi gia lasciarci, ricorda che eventuali streeming in corso saranno interrotti' 
                             confirmMessage='Esci'
