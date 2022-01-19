@@ -44,7 +44,7 @@ class UserController extends Controller
 
         // var_dump($request->all());
         // dd($request->all());
-        // return '';
+
         $validator = Validator::make($request->all(),[
             'email' => 'required|string|email',
             'password' => 'required|min:6', 

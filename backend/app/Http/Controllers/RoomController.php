@@ -4,29 +4,32 @@ namespace App\Http\Controllers;
 
 use App\Models\Room;
 use Twilio\Rest\Client;
-// use Facade\FlareClient\Http\Client;
 use Twilio\Jwt\AccessToken;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Twilio\Jwt\Grants\VideoGrant;
 use Illuminate\Support\Facades\Auth;
 use Barryvdh\Debugbar\Facades\Debugbar;
 use Illuminate\Support\Facades\Validator;
+use Twilio\Exceptions\TwilioException;
+use Illuminate\Support\Facades\Session;
 
 class RoomController extends Controller
 {
-    // public function _construct(){
-    //     $this->middleware("auth:api", ["except" => ["roomsByGame", 'roomsActive']]);
-    // }
+    public function _construct(){
+        $this->middleware("auth:api", ["except" => ["roomsByGame", 'roomsActive'] ] );
+    }
     
     public function create(Request $request) { //abbiamo bisogno della post per inviare delle informazioni 
-
-        $user = Auth::user();
-        Debugbar::info($user, 'test');
+        
+        $user =  Auth::guard('api')->id();
+        
         // getting the logged user
-        // print_r($user->id);
+      
         // here we are checking if the user has a room with null record, will return an error json
-        if (Room::where('user_id', $user->id)->where('closed_at', null)->first()) {
+        if (Room::where('user_id', $user)->where('closed_at', null)->first()) {
             return response()->json([
+                "test" => $user,
                 'success' => false,
                 'message' => 'This user has already an active room'
             ], 400); #bad request
@@ -46,7 +49,7 @@ class RoomController extends Controller
         }
         // if we get till here, means that everything went well, and i can do the must assigment
         $newRoom = Room::create([
-            'user_id' => $user->id,
+            'user_id' => $user,
             'game_id' => $request->game_id,
             'game_name' => $request->game_name,
             'max_seats_available' => $request->max_seats_available,
@@ -92,4 +95,115 @@ class RoomController extends Controller
                 ]
         ],201);
     }
+    
+    public function close() {
+        //recupero la stanza attiva per l'utente loggato
+        $activeRoom = Room::where('user_id', Auth::guard('api')->id())->where('closed_at', null)->first();
+        
+        //controllo se c'è una stanza attiva
+        if(!$activeRoom){
+            return response()->json(["status", "ok, no room"], 200);
+        }
+        //recupero la data della chiusura della stanza
+        $activeRoom->closed_at = Carbon::now()->format('d-M-Y H:i:s');
+        $activeRoom->save();
+        //creo il nome della stanza
+        $room_name = "rehacktor_" . $activeRoom->id;
+        
+        $sid = getenv("TWILIO_ACCOUNT_SID");
+        $token = getenv("TWILIO_AUTH_TOKEN");
+
+        //devo lavorare con twilio per chiudere la stanza
+        $twilio = new Client($sid, $token);
+
+        try {
+
+            $room = $twilio->video->v1->rooms($room_name)->update('completed');
+              //catturo l'errore su twilio
+
+        } catch(TwilioException $e) {
+            return response()->json(['status' => "ok, room closed, was already closed on twilio"], 200);
+        }
+
+        return response()->json(["status" => "ok, room closed"], 200);
+
+    }
+
+    public function join(Request $request) {
+        $user =  Auth::guard('api')->check();
+        $user_id = Auth::guard('api')->id();
+        $room_id = $request->input('room_id');
+
+        $room = Room::find($room_id);
+
+        if ($room->closed_at) {
+            return response()->json("room closed");
+        }
+
+        if ($room->seats == $room->max_seats_available) {
+            return response()->json("no more seats available");
+
+        }
+
+        $room->seats++;
+        $room->save();
+
+        $room_name = "rehacktor" . $room->id;
+
+        $sid = getenv("TWILIO_ACCOUNT_SID");
+        $userSid = getenv('TWILIO_USER_SID');
+        $token = getenv("TWILIO_AUTH_TOKEN");
+        
+        $identity = "User Watcher " . $user . " on room" . $room_id;
+
+        $token = new AccessToken(  //class to import use Twilio\Jwt\AccessToken;
+            $userSid,  # TWILIO USERSID
+            $sid,      # TWILIO API SID
+            $token,    # TWILIO SECRET
+            3600, $identity
+        );
+        
+        // Create a Video grant, an access
+        $videoGrant = new VideoGrant();
+        $videoGrant->setRoom(($room_name));
+
+        //Add the grant to the token
+        $token->addGrant($videoGrant);
+
+        return response()->json([
+            'jwt' => $token->toJWT(),
+            'room_name' => $room_name
+        ], 200);
+
+    }
+
+    public function streamerInfo(Room $room) {
+
+
+        $stremer_id = $room->user->name;
+        $game_name = $room->game_name;
+
+        return response()->json([
+            'stremer' => $stremer_id,
+            'room_name' => $game_name
+        ]);
+    }
+
+    public function roomsActive(Request $request) {
+        //send my the list of all the rooms active and the name  of the user and the id
+        $rooms = Room::with('user:id, name')->where('closed_at', null)->get();
+        return response()->json($rooms);
+    }
+    
+    public function roomsByGame(Request $request) {
+    
+        $rooms = Room::with('user:id,name')->where('game_id', $request->game_id)->where('closed_at', null)->get();
+        return response()->json(
+            [
+                // 'rooms' => $rooms,
+                'game_name' => $request->game_name
+            ]
+        );
+    }
+
 }

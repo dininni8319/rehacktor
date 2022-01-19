@@ -12,6 +12,7 @@ export function AuthProvider(props) {
     const [ user, setUser ] = useState(JSON.parse(initialUser))
 
     const login = (username, token, id ) => {
+
         const obj = {
             username: username,
             token: token,
