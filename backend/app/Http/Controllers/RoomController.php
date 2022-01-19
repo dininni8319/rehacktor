@@ -191,7 +191,7 @@ class RoomController extends Controller
 
     public function roomsActive(Request $request) {
         //send my the list of all the rooms active and the name  of the user and the id
-        $rooms = Room::with('user:id, name')->where('closed_at', null)->get();
+        $rooms = Room::with('user:id')->where('closed_at', null)->get();
         return response()->json($rooms);
     }
     
@@ -199,11 +199,9 @@ class RoomController extends Controller
     
         $rooms = Room::with('user:id,name')->where('game_id', $request->game_id)->where('closed_at', null)->get();
         return response()->json(
-            [
-                // 'rooms' => $rooms,
-                'game_name' => $request->game_name
-            ]
+           $rooms
         );
     }
+    
 
 }

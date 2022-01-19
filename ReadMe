@@ -42,3 +42,6 @@ http GET http://localhost:8001/api/users/room/roomsActive
 
 ### roosActive 
 http GET http://localhost:8001/api/users/room/roomsByGame
+
+### count users
+http GET http://localhost:8001/api/users/count

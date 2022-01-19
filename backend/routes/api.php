@@ -24,6 +24,7 @@ Route::group(['prefix' => 'users', 'middleware' => 'CORS'], function ($router){
      //Public Routes
      Route::post('/register', [UserController::class, 'register'])->name('register.user');
      Route::post('/login', [UserController::class, 'login'])->name('login.user');
+     Route::post('/count', [UserController::class, 'countUsers'])->name('count.user');
 
      //Private Route
      Route::get('/view-profile', [UserController::class, 'viewProfile'])->name('profile.user');
