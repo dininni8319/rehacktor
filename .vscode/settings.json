@@ -18,5 +18,8 @@
         "track",
         "wbr"
     ],
-    "emmet.triggerExpansionOnTab": true
+    "emmet.triggerExpansionOnTab": true,
+    "emmet.syntaxProfiles": {
+        "javascript": "jsx"
+    }
 }

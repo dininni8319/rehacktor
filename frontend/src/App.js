@@ -1,4 +1,5 @@
 import './App.css';
+
 import Home from './Components/Views/Home/Home';
 import Game from './Components/Views/Game/Game';
 import Search from './Components/Views/Search/Search';
@@ -9,10 +10,15 @@ import Footer from './Components/UI/Footer/Footer';
 import Sign from './Components/Views/Sign/Sign';
 import Profile from './Components/Views/Profile/Profile';
 
-import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import { AuthProvider } from './Contexts/Auth/index';
 import { ConfigProvider } from './Contexts/Config/index';
+
+import ProtectedRoute from './Components/Utilities/ProtectedRoute';
+import Stream from './Components/Views/Stream/Stream';
+
+//Utilities
 
 function App() {
 
@@ -28,6 +34,16 @@ function App() {
               <Route path='/game/:slug' element={<Game />} />
               <Route path='/sign' element={<Sign />} />
               <Route path='/profile' element={<Profile />} />
+             
+              <Route 
+                path="/stream/:game_name/:game_id"  
+                element={
+                  <ProtectedRoute>
+                    <Stream />
+                  </ProtectedRoute> 
+                
+                }/>
+                 
             </Routes>
 
             <Footer />

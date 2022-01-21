@@ -1,6 +1,6 @@
 import classes from './Navbar.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSpinner, faUserCircle, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { faSpinner, faUserCircle, faSignOutAlt} from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 
 import { AuthContext } from '../../../Contexts/Auth';
