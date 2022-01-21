@@ -1,15 +1,17 @@
 import classes from './Navbar.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSpinner, faUserCircle, faSignOutAlt} from '@fortawesome/free-solid-svg-icons';
+import { faSpinner, faUserCircle, faSignOutAlt, faCircle} from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 
 import { AuthContext } from '../../../Contexts/Auth';
+import { StreamingContext } from '../../../Contexts/Streaming';
 import { useState, useContext } from 'react';
 import Modal from '../Modal/Modal';
 
 export default function Navbar() {
    
     const { user, logout } = useContext(AuthContext)
+    const { isStreaming } = useContext(StreamingContext)
     
     const [ modal, setModal ] = useState(false)
     
@@ -55,13 +57,23 @@ export default function Navbar() {
                             confirmMessage='Esci'
                             declineMessage='Rimani sulla pagina' 
                             action={logout}
-                          />}  
-                          <Link to='/profile' className='text-decoration-none text-white d-flex me-2'>
-                            <FontAwesomeIcon icon={faUserCircle} className='fa-1x mx-1 text-warning'></FontAwesomeIcon>
-                            { user.username ? user.username : '' }
+                          />}
+                      </li> 
+                      <li className='nav-item'>
+                          <Link to='/streamers' className='text-decoration-none text-white me-2'>
+                            Streamers
                             
                           </Link>
                       </li>
+                      <li className='nav-item'>
+                          <Link to='/profile' className='text-decoration-none text-white me-2'>
+                            <FontAwesomeIcon icon={faUserCircle} className='fa-1x mx-1 text-warning'>{ user.username ? user.username : '' }</FontAwesomeIcon>
+                            
+                            { isStreaming && <FontAwesomeIcon icon={faCircle} className={`fa-1x mx-1 ${classes['bg-streaming']}`}></FontAwesomeIcon>}
+                            
+                          </Link>
+                      </li>    
+                    
                       <li className='nav-item'>
                           <button className='text-decoration-none text-white d-flex me-2 bg-transparent' onClick={() => setModal(true)}>
                           <FontAwesomeIcon icon={faSignOutAlt} className='fa-1x mx-1 text-main'></FontAwesomeIcon>

@@ -61,3 +61,7 @@
   background-color: rgba(18, 55, 55, 1);
   transform: skew(-50deg);
 }
+
+.bg-streaming {
+  color: red;
+}

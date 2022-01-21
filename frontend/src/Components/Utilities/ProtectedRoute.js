@@ -7,7 +7,7 @@ const ProtectedRoute = ({ children}) => {
 
     const { user } = useContext(AuthContext);
 
-    return  user ? children : <Navigate to='/' />
+    return  user ? children : <Navigate to='/sign' />
 };
 
 export default ProtectedRoute;

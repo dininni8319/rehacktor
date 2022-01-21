@@ -45,7 +45,7 @@ export default function Stream() {
         .then(resp => resp.json())
         .then(data => {
             localStorage.setItem("game", JSON.stringify(object))
-
+           console.log(data, data.jwt, '"test for the jwt');
             //attivare lo streaming
             startStreaming(data.twilio.jwt, data.twilio.room_name, myFaceVideo)
             .then(() => {
@@ -87,10 +87,43 @@ export default function Stream() {
     }
 
     return (
-        <div className="container min-vh-100 mt-5">
-            <div className="row mt-5">
-                <div className="col-12 col-md-6 mt-5">
-                    <h2>Hello, {user.username}</h2>
+        <div className="container min-vh-100">
+            <div className="row pt-5">
+                <div className="col-12 col-md-6 d-flex flex-column align-items-center justify-content-start pt-5 vh-100">
+                    <h2 >Hello, {user.username}</h2>
+                    <p>you are going to stream {game_name}</p>
+
+                    {
+                        isStreaming ? (
+                            <div>
+                                Already streaming
+                                <button className='btn btn-danger mt-5' onClick={endStream}>
+                                    Close
+                                </button>
+                            </div>
+                        ) : (
+
+                            <div>
+                                <p>You arre going to stream {game_name}</p>
+                                <p>Select a number {number.value}</p>
+    
+                                <form className="w-25" onSubmit={startStream}>
+                                    <input type="range"
+                                      className="form-range"
+                                      min="1"
+                                      max="10"
+                                      step="1"
+                                      id="range"
+                                      value={number.value}
+                                      {...number}
+                                    />
+                                    <button className="btn btn-info">Stream now!</button>
+                                </form>
+                            </div>
+                       
+                        ) 
+                    }
+                    <div ref={myFaceVideo}></div>
                 </div>
             </div>
         </div>

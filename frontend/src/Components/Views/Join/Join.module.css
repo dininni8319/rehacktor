@@ -1,0 +1,16 @@
+.wrapperTracks {
+    position: relative;
+    min-height: 100vh;
+}
+
+.streamer{
+    position: absolute;
+}
+
+.viewer {
+    position: absolute;
+}
+
+.streamerNam {
+    position: relative;
+}

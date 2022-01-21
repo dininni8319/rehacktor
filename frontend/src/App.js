@@ -19,6 +19,8 @@ import Stream from './Components/Views/Stream/Stream';
 
 //Utilities
 import ProtectedRoute from './Components/Utilities/ProtectedRoute';
+import Streamers from './Components/Views/Streamers/Streamers';
+import Join from './Components/Views/Join/Join';
 
 function App() {
 
@@ -34,13 +36,36 @@ function App() {
                 <Route path='/search/:genre/:num' element={<Search />} />
                 <Route path='/game/:slug' element={<Game />} />
                 <Route path='/sign' element={<Sign />} />
-                <Route path='/profile' element={<Profile />} />
+                <Route 
+                  path='/profile' 
+                  element={
+                    <ProtectedRoute>
+                        <Profile />
+                    </ProtectedRoute> 
+                  } 
+                />
               
                 <Route 
                   path="/stream/:game_name/:game_id"  
                   element={
                     <ProtectedRoute>
                       <Stream />
+                    </ProtectedRoute> 
+                  }
+                />
+                 <Route 
+                  path="/streamers"  
+                  element={
+                    <ProtectedRoute>
+                      <Streamers />
+                    </ProtectedRoute> 
+                  }
+                />
+                 <Route 
+                  path="/join-room/:id"  
+                  element={
+                    <ProtectedRoute>
+                      <Join />
                     </ProtectedRoute> 
                   }
                 />

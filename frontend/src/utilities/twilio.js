@@ -26,8 +26,8 @@ function startStreaming(jwt, room_name, myFaceVideo) {
                 const tracks = [...localTracks, screenTrack]
 
                 //vedere la preview
-                const LocalVideoTrack = localTracks[1]
-                myFaceVideo.current.appendChild(LocalVideoTrack.attach())
+                const localVideoTrack = localTracks[1]
+                myFaceVideo.current.appendChild(localVideoTrack.attach())
 
                 //mando a twilio le tracks
 
@@ -55,8 +55,8 @@ function startStreaming(jwt, room_name, myFaceVideo) {
                             
                             
                             attachedElements.forEach((element) => {
-
-                                element.romove()
+                                // element.romove()
+                                element.parentNode.removeChild(element)
                                 console.log("element removed" , element);
                             });
                         });
