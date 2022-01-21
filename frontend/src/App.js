@@ -14,40 +14,43 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import { AuthProvider } from './Contexts/Auth/index';
 import { ConfigProvider } from './Contexts/Config/index';
-
-import ProtectedRoute from './Components/Utilities/ProtectedRoute';
+import { StreamingProvider } from './Contexts/Streaming/index'
 import Stream from './Components/Views/Stream/Stream';
 
 //Utilities
+import ProtectedRoute from './Components/Utilities/ProtectedRoute';
 
 function App() {
 
   return (
       <ConfigProvider>
         <AuthProvider>
-          <Router>
-            <Navbar />
+          <StreamingProvider>
+            <Router>
+              <Navbar />
 
-            <Routes>
-              <Route path='/' element={<Home />} />
-              <Route path='/search/:genre/:num' element={<Search />} />
-              <Route path='/game/:slug' element={<Game />} />
-              <Route path='/sign' element={<Sign />} />
-              <Route path='/profile' element={<Profile />} />
-             
-              <Route 
-                path="/stream/:game_name/:game_id"  
-                element={
-                  <ProtectedRoute>
-                    <Stream />
-                  </ProtectedRoute> 
-                
-                }/>
-                 
-            </Routes>
+              <Routes>
+                <Route path='/' element={<Home />} />
+                <Route path='/search/:genre/:num' element={<Search />} />
+                <Route path='/game/:slug' element={<Game />} />
+                <Route path='/sign' element={<Sign />} />
+                <Route path='/profile' element={<Profile />} />
+              
+                <Route 
+                  path="/stream/:game_name/:game_id"  
+                  element={
+                    <ProtectedRoute>
+                      <Stream />
+                    </ProtectedRoute> 
+                  }
+                />
+                  
+              </Routes>
 
-            <Footer />
+              <Footer />
             </Router>
+          </StreamingProvider>
+
         </AuthProvider>
       </ConfigProvider>
   );
