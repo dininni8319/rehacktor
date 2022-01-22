@@ -45,7 +45,6 @@ export default function Stream() {
         .then(resp => resp.json())
         .then(data => {
             localStorage.setItem("game", JSON.stringify(object))
-           console.log(data, data.jwt, '"test for the jwt');
             //attivare lo streaming
             startStreaming(data.twilio.jwt, data.twilio.room_name, myFaceVideo)
             .then(() => {

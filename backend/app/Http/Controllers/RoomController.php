@@ -130,10 +130,9 @@ class RoomController extends Controller
     }
 
     public function join(Request $request) {
-        $user =  Auth::guard('api')->check();
-        $user_id = Auth::guard('api')->id();
+        $user =  Auth::guard('api')->id();
+        // $user_id = Auth::guard('api');
         $room_id = $request->input('room_id');
-
         $room = Room::find($room_id);
 
         if ($room->closed_at) {
@@ -151,8 +150,8 @@ class RoomController extends Controller
         $room_name = "rehacktor" . $room->id;
 
         $sid = getenv("TWILIO_ACCOUNT_SID");
-        $userSid = getenv('TWILIO_USER_SID');
         $token = getenv("TWILIO_AUTH_TOKEN");
+        $userSid = getenv('TWILIO_USER_SID');
         
         $identity = "User Watcher " . $user . " on room" . $room_id;
 
@@ -173,12 +172,11 @@ class RoomController extends Controller
         return response()->json([
             'jwt' => $token->toJWT(),
             'room_name' => $room_name
-        ], 200);
+        ]);
 
     }
 
     public function streamerInfo(Room $room) {
-
 
         $stremer_id = $room->user->name;
         $game_name = $room->game_name;

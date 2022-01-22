@@ -29,12 +29,12 @@ export default function Join(params) {
     let { api_urls } = useContext(ConfigContext);
 
     const token = JSON.parse(localStorage.getItem('user')).token;
-   
+
     useEffect(() => {
         fetch(`${api_urls.backend}/api/users/room/join`,{
             method: "POST",
             headers: {
-                "Content-Type" : "application/json",
+                "Content-Type": "application/json",
                 Authorization: `Bearer ${token}` 
             },
             body: JSON.stringify({room_id})
@@ -51,13 +51,14 @@ export default function Join(params) {
                 setStatus(full)
                 return;
             }
-
-            console.log(data, "DATA");
+            // console.log(data.jwt,data.room_name,data, 'checking the token');
+            console.log(data,"DATAaaaaaa");
             setStatus(streaming)
-
+            
             joinStreaming(
                 data.jwt, 
-                data.room_name, 
+                data.room_name,
+                data.participants,
                 (track) => {
                     StreamerVideo.current.appendChild(track.attach())
                 },
@@ -73,17 +74,15 @@ export default function Join(params) {
         })
         .then(() => {
             fetch(`${api_urls.backend}/api/users/room/streamer/${room_id}`, {
-                // method: "",
                 headers: {
                     "Content-Type" : "application/json",
                     Authorization: `Bearer ${token}` 
                 },
             })
             .then(resp => resp.json())
-            .then(data => {
-                setInfo(data);
-            });
+            .then(data => setInfo(data));
         });
+
     },[]);
     
     const showLoading = () => {

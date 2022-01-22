@@ -32,7 +32,7 @@ Route::group(['prefix' => 'users', 'middleware' => 'CORS'], function ($router){
      
      // //Private Route
      Route::post('/room', [RoomController::class, 'create']); //creare una nuova stanza
-     Route::post('/room/close', [RoomController::class, 'close']); 
+     Route::post('/room/close', [RoomController::class, 'close']);
      Route::post('/room/join', [RoomController::class, 'join']);
      Route::get('/room/streamer/{room}', [RoomController::class, 'streamerInfo']);  //informazioni
 

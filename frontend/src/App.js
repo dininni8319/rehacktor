@@ -62,7 +62,7 @@ function App() {
                   }
                 />
                  <Route 
-                  path="/join-room/:id"  
+                  path="/join-room/:room_id"  
                   element={
                     <ProtectedRoute>
                       <Join />
