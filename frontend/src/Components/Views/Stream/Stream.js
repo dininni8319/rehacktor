@@ -15,6 +15,7 @@ export default function Stream() {
     const { game_name, game_id } = useParams();
 
     const { user } = useContext(AuthContext);
+    // console.log(user.username, 'user?');
 
     const { api_urls } = useContext(ConfigContext);
 
@@ -34,6 +35,7 @@ export default function Stream() {
         }
 
         //creo la stanza  e attengo jwt
+        // console.log(api_urls.backend,'test' );
         fetch(`${api_urls.backend}/api/users/room/`,{
             method: "POST",
             headers: {
@@ -44,11 +46,12 @@ export default function Stream() {
         })
         .then(resp => resp.json())
         .then(data => {
+
             localStorage.setItem("game", JSON.stringify(object))
             //attivare lo streaming
             startStreaming(data.twilio.jwt, data.twilio.room_name, myFaceVideo)
             .then(() => {
-                console.log("streaming lanciato");
+                // console.log("streaming lanciato");
                 setStreamingOn();
 
             })
@@ -89,7 +92,7 @@ export default function Stream() {
         <div className="container min-vh-100">
             <div className="row pt-5">
                 <div className="col-12 col-md-6 d-flex flex-column align-items-center justify-content-start pt-5 vh-100">
-                    <h2 >Hello, {user.username}</h2>
+                    <h2 className='text-main'>Hello, {user.username}</h2>
                     <p>you are going to stream {game_name}</p>
 
                     {
@@ -103,7 +106,7 @@ export default function Stream() {
                         ) : (
 
                             <div>
-                                <p>You arre going to stream {game_name}</p>
+                                {/* <p>You are going to stream {game_name}</p> */}
                                 <p>Select a number {number.value}</p>
     
                                 <form className="w-25" onSubmit={startStream}>

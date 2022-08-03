@@ -14,7 +14,7 @@ export default function Join(params) {
 
     const StreamerVideo = useRef('video');
     const StreamerFace = useRef('face');
-
+    // console.log(StreamerVideo, StreamerFace);
     const [ loading, streaming, closed, full] = [
         "loading",
         "streaming",
@@ -52,13 +52,18 @@ export default function Join(params) {
                 return;
             }
             // console.log(data.jwt,data.room_name,data, 'checking the token');
-            console.log(data,"DATAaaaaaa");
-            setStatus(streaming)
-            
+            // console.log(data.partecipant,"DATAaaaaaa");
+            // setStatus(streaming)
+            // let arr = [];
+            // let participants = data.partecipant
+            // let newArr = [participants].concat(arr)
+            // newArr = [...newArr]
+
+            // console.log(newArr, 'checking the participants');
             joinStreaming(
                 data.jwt, 
                 data.room_name,
-                data.participants,
+                // newArr,
                 (track) => {
                     StreamerVideo.current.appendChild(track.attach())
                 },
@@ -113,9 +118,9 @@ export default function Join(params) {
     }
 
     return (
-        <div className="container min-vh-100 mt-5">
-            <div className="row my-5">
-                <div className="col-12 position-relative">
+        <div className="container min-vh-100 py-5">
+            <div className="row py-5">
+                <div className="col-12 position-relative py-5">
                     <div className={classes.wrapperTracks}>
                         <div className={classes.streamer} ref={StreamerVideo}></div>
                         <div className={classes.viewer} ref={StreamerFace}></div>

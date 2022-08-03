@@ -36,7 +36,7 @@ export default function SignUp() {
               })
                 .then(response => response.json())
                 .then(data => {
-                    login(data.data.username, token, data.data.id);
+                    login(data.data.name, token, data.data.id);
                     navigate('/');    //object history;
                 });
           });

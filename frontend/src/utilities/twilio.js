@@ -3,8 +3,8 @@ const { connect, createLocalTracks, LocalVideoTrack }  = require("twilio-video")
 function startStreaming(jwt, room_name, myFaceVideo) {
 
     return new Promise( (resolve, reject)  => {
-        connect(jwt, { name: room_name })
-        .then( room => {
+        
+        connect(jwt, { name: room_name }).then( room => {
             console.log("Joined the room ", room);
 
             let localAudioVideoTrack = createLocalTracks({
@@ -13,7 +13,7 @@ function startStreaming(jwt, room_name, myFaceVideo) {
             })
 
             let screenSharingTracks = navigator.mediaDevices.getDisplayMedia()
-
+            
             Promise.all([localAudioVideoTrack, screenSharingTracks])
             .then(([localTracks, stream]) => {
 
@@ -30,9 +30,9 @@ function startStreaming(jwt, room_name, myFaceVideo) {
                 myFaceVideo.current.appendChild(localVideoTrack.attach())
 
                 //mando a twilio le tracks
-
+                // console.log(jwt, 'testtst');
                 return connect(jwt, {
-                    name :"{{$room_name}}",
+                    name :"{{ $room_name }}",
                     tracks : tracks
                 })
             }) 
@@ -52,8 +52,6 @@ function startStreaming(jwt, room_name, myFaceVideo) {
                             const attachedElements = track.detach()
                             console.log("Element disconnected", attachedElements);
                             
-                            
-                            
                             attachedElements.forEach((element) => {
                                 // element.romove()
                                 element.parentNode.removeChild(element)
@@ -70,40 +68,38 @@ function startStreaming(jwt, room_name, myFaceVideo) {
                 reject("Share screen refused")
             })
         });
-    });
-    
+    });  
 }
 
 function joinStreaming(jwt, room_name, streamerVideoStarted, streamerFaceStarted, streamClosed) {
-    console.log(jwt, room_name, "connect");
     
     return new Promise((resolve, reject) => {
-
+        console.log(jwt, room_name, "connect");
+        
         connect(jwt, { name: room_name, audio: false, video: false })
         .then((room) => {
-                console.log('in the join');
+                console.log('in the join', room);
             room.on('participantConnected', (participant) => {
                 console.log("A new participant joind the room", participant);
             })
             
             room.on('participantDisconnected', (participant) => {
-                console.log("A participant disconnected", participant);
-                
+                console.log("A participant disconnected", participant);  
             })
             
-            console.log(room, 'why you dont work');
+            console.log(room.localParticipant, 'why you dont want to work');
             room.participants.forEach((participant) => {
-                console.log('in the join me ');
-                  
-                //ci interrassa solo chi trasmette
+                console.log('ok', participant);
                 console.log('testing the connection with room 74');
+                //ci interrassa solo chi trasmette
                 if (participant.identity !== room_name) return;
-
+                
                 participant.on("trackSubscribed", (track) => {
                     track.on("started", (track) => {
                         const isVideo = track.kind === 'video'
                         const isBigVideo = isVideo && track.dimensions.with >= 700
                         
+                        console.log('in the join me ');
                         if (isBigVideo) {
                             streamerVideoStarted(track)                            
                         } else {
@@ -130,8 +126,7 @@ function joinStreaming(jwt, room_name, streamerVideoStarted, streamerFaceStarted
         }).catch(error => {
             console.log("Unable to connect to the room", error.message);
         })
-    })
-    
+    })   
 }
 
 export { joinStreaming, startStreaming };

@@ -22,13 +22,14 @@ export default function Streamers(params) {
     // console.log(rooms, 'le stanze');
     
     function millToHour(n) {
-        let t = n / (1000*60)
+        let t = n / (1000 * 60)
         let h = Math.floor(t / 60)
 
         let m = t % 60
 
         return `${h}h ${m.toFixed(0)}min` 
     }
+
     return (
         <div className='container pt-5 min-vh-100'>
             <div className="row mt-5 pt-5">
@@ -61,7 +62,7 @@ export default function Streamers(params) {
                                             <td className='pt-3 text-white '>{room.user.id}</td>
                                             <td className='pt-3 text-white'>{room.game_name.replace(/-/g, "").toUpperCase()}</td>
                                             <td className='pt-3'>{room.max_seats_available}</td>
-                                            <td className='pt-3'>{millToHour(new Date() - new Date(room.created_at))}</td>
+                                            <td className='pt-3'>{ millToHour(new Date() - new Date(room.created_at))}</td>
                                             <td className='pt-3 text-white'>
                                                 <Link 
                                                    to={`/join-room/${room.id}`}

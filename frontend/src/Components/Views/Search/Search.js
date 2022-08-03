@@ -38,7 +38,6 @@ export default function Search() {
           })
     },[])
 
-
     useEffect(() => {
         fetch(`${api_urls.games}/api/games?&key=${api_secrets.games}&genres=${genre}&page=${num}&page_size=12`)
           .then(resp => resp.json())

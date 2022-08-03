@@ -20,9 +20,9 @@
           let { user } = useContext(AuthContext);
 
           useEffect(() => {
-          fetch(`${api_urls.games}/api/games/${slug}?&key=${api_secrets.games}`)
-               .then(resp => resp.json())
-               .then(data => setGame(data))
+               fetch(`${api_urls.games}/api/games/${slug}?&key=${api_secrets.games}`)
+                    .then(resp => resp.json())
+                    .then(data => setGame(data))
           },[])
 
           return (

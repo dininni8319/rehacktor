@@ -171,7 +171,8 @@ class RoomController extends Controller
 
         return response()->json([
             'jwt' => $token->toJWT(),
-            'room_name' => $room_name
+            'room_name' => $room_name,
+            'partecipant' => $user
         ]);
 
     }
@@ -180,10 +181,11 @@ class RoomController extends Controller
 
         $stremer_id = $room->user->name;
         $game_name = $room->game_name;
-
+        
         return response()->json([
             'stremer' => $stremer_id,
-            'room_name' => $game_name
+            'room_name' => $game_name,
+            // 'partecipant' => 
         ]);
     }
 
