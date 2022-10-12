@@ -16,13 +16,13 @@ use Illuminate\Support\Facades\Session;
 
 class RoomController extends Controller
 {
-    public function _construct(){
+    public function __construct(){
         $this->middleware("auth:api", ["except" => ["roomsByGame", 'roomsActive'] ] );
     }
     
     public function create(Request $request) { //abbiamo bisogno della post per inviare delle informazioni 
         
-        $user =  Auth::guard('api')->id();
+        $user = Auth::guard('api')->id();
         
         // getting the logged user
       

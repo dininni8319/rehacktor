@@ -1,13 +1,12 @@
-import { useContext } from 'react';
-import { Navigate } from 'react-router-dom';
-import { AuthContext } from '../../Contexts/Auth/index';
+import { useContext } from "react";
+import { Navigate } from "react-router-dom";
+import { AuthContext } from "../../Contexts/Auth/index";
 
-// middleware for the protected route 
-const ProtectedRoute = ({ children}) => {
+// middleware for the protected route
+const ProtectedRoute = ({ children }) => {
+  const { user } = useContext(AuthContext);
 
-    const { user } = useContext(AuthContext);
-
-    return  user ? children : <Navigate to='/sign' />
+  return user ? children : <Navigate to="/sign" />;
 };
 
 export default ProtectedRoute;

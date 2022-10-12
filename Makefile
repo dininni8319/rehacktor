@@ -22,3 +22,12 @@ install: ## performs initial setup
 	@echo "Installing libraries"
 	@cd backend && composer update && composer install && cp .env.example .env
 	@cd frontend && npm install
+
+prettier: ##prettier
+	@echo "lunch prettier"
+	@cd frontend && npm start npx prettier --write . &
+	@cd backend && npx prettier --write . 
+
+clearCache: ## to clear the cache
+	@echo "clear cache"
+	@cd backend && php artisan cache:clear && php artisan config:cache && php artisan route:clear

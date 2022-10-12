@@ -30,13 +30,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->registerPolicies();
+        // $this->registerPolicies();
 
-        if (! $this->app->routesAreCached()) {
-            Passport::routes();
-            Passport::tokensExpireIn(now()->addDays(1));
+        // if (! $this->app->routesAreCached()) {
+        //     Passport::routes();
+        //     Passport::tokensExpireIn(now()->addDays(1));
 
-            // View::share('user', $user);
-        }
+        //     // View::share('user', $user);
+        // }
     }
 }

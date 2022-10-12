@@ -42,9 +42,6 @@ class UserController extends Controller
     
     public function login(Request $request) {
 
-        // var_dump($request->all());
-        // dd($request->all());
-
         $validator = Validator::make($request->all(),[
             'email' => 'required|string|email',
             'password' => 'required|min:6', 
@@ -126,6 +123,7 @@ class UserController extends Controller
         ], 200);
 
     }
+    
     public function viewProfile(){
         $user = Auth::guard('api')->user(); // the user must be authenticated 
         

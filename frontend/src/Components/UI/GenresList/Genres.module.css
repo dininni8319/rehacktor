@@ -1,10 +1,10 @@
 .genres-wrapper {
-    margin-top: 50px;
-    height: 500px;
-    overflow-y: scroll;
+  margin-top: 50px;
+  height: 500px;
+  overflow-y: scroll;
 }
 
-.genres-wrapper  button:hover {
+.genres-wrapper button:hover {
   padding-left: 30px;
   transition: 0.3s;
 }
