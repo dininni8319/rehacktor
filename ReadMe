@@ -48,3 +48,6 @@ http GET http://localhost:8001/api/users/count
 s.dininni@yahoo.com
 
 Salvatore
+#use it when the env variables are not giving the correct value
+php artisan config:clear
+php artisan optimize:clear

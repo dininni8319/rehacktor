@@ -47,7 +47,6 @@ export default function Search() {
     )
       .then((resp) => resp.json())
       .then((data) => {
-        //   console.log(data.results, 'test the results');
         setGames(data.results);
       });
   }, [genre, num]);

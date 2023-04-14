@@ -3,7 +3,6 @@ import { useParams } from "react-router";
 import { AuthContext } from "./../../../Contexts/Auth";
 import { ConfigContext } from "./../../../Contexts/Config/index";
 import { StreamingContext } from "./../../../Contexts/Streaming";
-
 import { useContext, useRef } from "react";
 import useInput from "./../../../Hooks/useInput";
 
@@ -84,9 +83,9 @@ export default function Stream() {
   return (
     <div className="container min-vh-100">
       <div className="row pt-5">
-        <div className="col-12 col-md-6 d-flex flex-column align-items-center justify-content-start pt-5 vh-100">
+        <div className="col-12 col-md-6 d-flex flex-column justify-content-start pt-5 vh-100">
           <h2>Hello, {user.username}</h2>
-          <p>you are going to stream {game_name}</p>
+          <p>You are going to stream {game_name}</p>
 
           {isStreaming ? (
             <div>
@@ -96,10 +95,8 @@ export default function Stream() {
               </button>
             </div>
           ) : (
-            <div>
-              <p>You arre going to stream {game_name}</p>
-              <p>Select a number {number.value}</p>
-
+            <div className='d-flex flex-column'>
+              <p>Select a the number of people: {number.value}</p>
               <form className="w-25" onSubmit={startStream}>
                 <input
                   type="range"

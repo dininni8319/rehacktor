@@ -4,7 +4,6 @@ import { useParams } from "react-router";
 import { joinStreaming } from "./../../../utilities/twilio";
 import Loader from "../../UI/Loader/Loader";
 import { Link } from "react-router-dom";
-
 import { useContext } from "react";
 import { ConfigContext } from "../../../Contexts/Config";
 
@@ -50,7 +49,6 @@ export default function Join(params) {
           return;
         }
         // console.log(data.jwt,data.room_name,data, 'checking the token');
-        console.log(data, "DATAaaaaaa");
         setStatus(streaming);
 
         joinStreaming(

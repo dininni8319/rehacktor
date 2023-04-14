@@ -57,7 +57,11 @@ class RoomController extends Controller
         
         //Account SID and Auth Token at twilio.com/console 
         $sid = getenv("TWILIO_ACCOUNT_SID");
-        $userSid = getenv('TWILIO_USER_SID');
+
+        dd($sid, 'testing the Auth token');
+        $apiSid = getenv('TWILIO_API_KEY');
+        $apiSecret = getenv('TWILIO_API_SECRET');
+
         $token = getenv("TWILIO_AUTH_TOKEN");
 
         $twilio = new Client($sid, $token); //Here we get the Client for comunicate with Twilio
@@ -71,8 +75,8 @@ class RoomController extends Controller
 
         //Create access token, which we will serialize and send to the client
         $token = new AccessToken(  //class to import use Twilio\Jwt\AccessToken;
-            $userSid,  # TWILIO USERSID
             $sid,      # TWILIO API SID
+            $apiSid,  # TWILIO USERSID
             $token,    # TWILIO SECRET
             3600, $identity
         );
