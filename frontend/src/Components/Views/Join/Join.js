@@ -49,8 +49,7 @@ export default function Join(params) {
           setStatus(full);
           return;
         }
-        // console.log(data.jwt,data.room_name,data, 'checking the token');
-        console.log(data, "DATAaaaaaa");
+
         setStatus(streaming);
 
         joinStreaming(

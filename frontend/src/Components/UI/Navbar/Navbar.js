@@ -7,7 +7,6 @@ import {
   faCircle,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
-
 import { AuthContext } from "../../../Contexts/Auth";
 import { StreamingContext } from "../../../Contexts/Streaming";
 import { useState, useContext } from "react";
@@ -44,10 +43,10 @@ export default function Navbar() {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div
-          className="collapse navbar-collapse d-flex justify-content-end"
+          className="collapse navbar-collapse"
           id="navbarNav"
         >
-          <ul className="navbar-nav d-flex align-items-center">
+          <ul className="navbar-nav d-flex align-items-end align-items-md-center ms-md-auto">
             <li className="nav-item">
               <Link className="nav-link active" aria-current="page" to="/">
                 Home

@@ -2,7 +2,6 @@ import useInput from "../../../Hooks/useInput";
 import { Navigate, useNavigate } from "react-router";
 import { AuthContext } from "./../../../Contexts/Auth";
 import { ConfigContext } from "./../../../Contexts/Config";
-
 import { useContext, useState } from "react";
 
 export default function SignIn() {
@@ -14,7 +13,7 @@ export default function SignIn() {
 
   let { api_urls } = useContext(ConfigContext);
   let { login } = useContext(AuthContext);
-  // console.log(api_urls.backend, 'test backend 2');
+
   const Login = (event) => {
     event.preventDefault();
 
