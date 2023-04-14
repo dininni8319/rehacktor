@@ -136,7 +136,7 @@ export default function Search() {
             {games ? (
               games.map((game) => {
                 return (
-                  <div className="col-12 col-md-6 col-lg-4 mb-5" key={game.id}>
+                  <div className="col-12 col-md-6 col-lg-4 mb-5 d-flex justify-content-center" key={game.id}>
                     <Card
                       image={game.background_image}
                       name={game.name}

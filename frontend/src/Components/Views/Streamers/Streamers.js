@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import classes from "./Streamers.module.css";
 import { ConfigContext } from "../../../Contexts/Config";
 import { useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -14,7 +13,6 @@ export default function Streamers(params) {
     fetch(`${api_urls.backend}/api/users/room/roomsActive`)
       .then((response) => response.json())
       .then((rooms) => {
-        console.log(rooms);
         setRooms(rooms);
       });
   }, []);

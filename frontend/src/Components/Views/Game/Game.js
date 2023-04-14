@@ -22,7 +22,7 @@ export default function Game() {
     fetch(`${api_urls.games}/api/games/${slug}?&key=${api_secrets.games}`)
       .then((resp) => resp.json())
       .then((data) => setGame(data));
-  }, []);
+  }, [slug]);
 
   return (
     <>

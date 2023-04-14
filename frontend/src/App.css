@@ -81,7 +81,7 @@ h3 {
 .sign-bottom::after {
   position: absolute;
   content: "";
-  top: 0px;
+  top: 80%;
   left: 0px;
   height: 30px;
   width: 30px;
@@ -92,7 +92,7 @@ h3 {
 .sign-bottom::before {
   position: absolute;
   content: "";
-  top: 0px;
+  top: 80%;
   right: 0px;
   height: 30px;
   width: 30px;

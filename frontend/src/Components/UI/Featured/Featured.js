@@ -19,7 +19,7 @@ export default function Featured() {
         //   console.log(data.results.slice(0, 4), 'test');
         setFeatured(data.results.slice(0, 4));
       });
-  }, []);
+  }, [mostPopularGame2019]);
 
   return (
     <>
@@ -28,7 +28,7 @@ export default function Featured() {
           {featured !== null &&
             featured.map((el) => {
               return (
-                <div key={el.id} className="col-12 col-md-6 col-lg-3">
+                <div key={el.id} className="col-12 col-md-6 col-lg-3 d-flex justify-content-center">
                   <Card
                     image={el.background_image}
                     name={el.name}

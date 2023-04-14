@@ -1,4 +1,3 @@
-import classes from "./Stream.module.css";
 import { startStreaming } from "../../../utilities/twilio";
 import { useParams } from "react-router";
 import { AuthContext } from "./../../../Contexts/Auth";
@@ -73,7 +72,6 @@ export default function Stream() {
         return resp.json();
       })
       .then((data) => {
-        console.log("ending", data);
         localStorage.removeItem("game");
 
         setStreamingOff();

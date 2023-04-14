@@ -1,9 +1,8 @@
+import { useContext } from "react";
 import useInput from "../../../Hooks/useInput";
-import { Navigate, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import { AuthContext } from "./../../../Contexts/Auth";
 import { ConfigContext } from "./../../../Contexts/Config";
-
-import { useContext, useState } from "react";
 
 export default function SignIn() {
   const navigate = useNavigate();

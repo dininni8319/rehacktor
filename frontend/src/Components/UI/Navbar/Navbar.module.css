@@ -65,3 +65,13 @@
 .bg-streaming {
   color: red;
 }
+
+@media only screen and (max-width: 765px) {
+  .navLogo {
+   display: none;
+  }
+
+  .navbar::after {
+   height: 0;
+  }
+}
