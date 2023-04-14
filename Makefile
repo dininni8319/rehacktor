@@ -16,7 +16,7 @@ freshdb: ## reset db
 dev: ## serve for development
 	@echo "strating Dev enviroment"
 	@cd frontend && npm start &
-	@cd backend && php artisan serve
+	@cd backend && php artisan serve --port=8001
 
 install: ## performs initial setup
 	@echo "Installing libraries"
