@@ -1,4 +1,4 @@
-Comandi di utonomazione.
+Comandi di autonomazione.
 
 make dev = specifica la tipologia di comando, avvia entrambi le applicazioni, backend and frontend, con un unico commando di autonomazione.
 make freshdb = command that resets the db
@@ -37,10 +37,10 @@ http POST http://localhost:8001/api/users/room/join room_id=60 Authorization:Bea
 ### streamer info
 http GET http://localhost:8001/api/users/room/streamer/7 Authorization:Bearer\
 
-### roosActive 
+### roomsActive 
 http GET http://localhost:8001/api/users/room/roomsActive
 
-### roosActive 
+### roomsActive 
 http GET http://localhost:8001/api/users/room/roomsByGame
 
 ### count users
