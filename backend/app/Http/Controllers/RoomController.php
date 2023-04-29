@@ -56,14 +56,13 @@ class RoomController extends Controller
         ]);
         
         //Account SID and Auth Token at twilio.com/console 
-        $sid = getenv("TWILIO_ACCOUNT_SID");
-
-        dd($sid, 'testing the Auth token');
-        $apiSid = getenv('TWILIO_API_KEY');
-        $apiSecret = getenv('TWILIO_API_SECRET');
-
-        $token = getenv("TWILIO_AUTH_TOKEN");
-
+        // $sid = getenv("TWILIO_ACCOUNT_SID");
+        // $token = getenv("TWILIO_AUTH_TOKEN");
+        // $userSid = getenv('TWILIO_USER_SID');
+        $sid = "SK08fc7647a8492354ae51985baf7b9a65";
+        $userSid = "AC06748e0845e324771d54de644bb4299f";
+        $token = "tgSrxQajqkbvQgmw2puiKzSxOeyqKH1a";
+    // dd($sid, $userSid, $token, 'TESTING THE AUTH FOR TWILIO');
         $twilio = new Client($sid, $token); //Here we get the Client for comunicate with Twilio
         $room_name = "rehacktor_" . $newRoom->id; // create a room name
         // here we create  a new room with uniquename and roomname
@@ -75,8 +74,8 @@ class RoomController extends Controller
 
         //Create access token, which we will serialize and send to the client
         $token = new AccessToken(  //class to import use Twilio\Jwt\AccessToken;
+            $userSid,  # TWILIO USERSID
             $sid,      # TWILIO API SID
-            $apiSid,  # TWILIO USERSID
             $token,    # TWILIO SECRET
             3600, $identity
         );
