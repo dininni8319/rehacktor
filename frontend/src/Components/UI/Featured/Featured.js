@@ -16,7 +16,6 @@ export default function Featured() {
     fetch(mostPopularGame2019)
       .then((resp) => resp.json())
       .then((data) => {
-        //   console.log(data.results.slice(0, 4), 'test');
         setFeatured(data.results.slice(0, 4));
       });
   }, [mostPopularGame2019]);

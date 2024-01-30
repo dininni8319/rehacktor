@@ -1,5 +1,5 @@
 import classes from "./Call.module.css";
-import Video from "./../../../Assets/Video2.mp4";
+import Video from "./../../../Assets/video-compressed.mp4";
 
 export default function Call() {
   return (

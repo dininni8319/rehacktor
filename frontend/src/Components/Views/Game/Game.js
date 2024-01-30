@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { ConfigContext } from "../../../Contexts/Config/index";
 import { AuthContext } from "./../../../Contexts/Auth/index";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronCircleRight } from "@fortawesome/free-solid-svg-icons";
 

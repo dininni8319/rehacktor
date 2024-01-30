@@ -27,7 +27,6 @@ function startStreaming(jwt, room_name, myFaceVideo) {
           myFaceVideo.current.appendChild(localVideoTrack.attach());
 
           //mando a twilio le tracks
-
           return connect(jwt, {
             name: "{{$room_name}}",
             tracks: tracks,
@@ -75,12 +74,12 @@ function joinStreaming(
   streamerFaceStarted,
   streamClosed
 ) {
-  console.log(jwt, room_name, "connect");
+ 
 
   return new Promise((resolve, reject) => {
     connect(jwt, { name: room_name, audio: false, video: false })
       .then((room) => {
-        console.log("in the join");
+       
         room.on("participantConnected", (participant) => {
           console.log("A new participant joind the room", participant);
         });
@@ -89,18 +88,17 @@ function joinStreaming(
           console.log("A participant disconnected", participant);
         });
 
-        console.log(room, "why you dont work");
+        
         room.participants.forEach((participant) => {
           console.log("in the join me ");
 
           //ci interrassa solo chi trasmette
-          console.log("testing the connection with room 74");
           if (participant.identity !== room_name) return;
 
           participant.on("trackSubscribed", (track) => {
             track.on("started", (track) => {
               const isVideo = track.kind === "video";
-              const isBigVideo = isVideo && track.dimensions.with >= 700;
+              const isBigVideo = isVideo && track.dimensions.width >= 700;
 
               if (isBigVideo) {
                 streamerVideoStarted(track);
