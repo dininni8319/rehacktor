@@ -13,7 +13,7 @@ import {
 import Loader from "../../UI/Loader/Loader";
 import { useContext } from "react";
 import { ConfigContext } from "../../../Contexts/Config/index";
-import { getGenre } from "../../../Services/gameService";
+import { getGames, getGenre, getSearchedGame } from "../../../Services/gameService";
 
 export default function Search() {
   const [genres, setGenres] = useState(null);
@@ -42,23 +42,41 @@ export default function Search() {
   }, []);
 
   useEffect(() => {
-    fetch(
-      `${api_urls.games}/api/games?&key=${api_secrets.games}&genres=${genre}&page=${num}&page_size=12`
-    )
-      .then((resp) => resp.json())
-      .then((data) => {
-        setGames(data.results);
-      });
+    const fetchGames = async() => {
+      try {
+        const url = `${api_urls.games}/api/games?&key=${api_secrets.games}&genres=${genre}&page=${num}&page_size=12`;
+        const response = await getGames(url);
+        const data = await response.json();
+
+        if (response.ok) {
+          setGames(data.results)
+        }
+      } catch (error) {
+        alert("Error: I did not find any games");
+      }
+    }
+    fetchGames();
   }, [genre, num]);
 
   useEffect(() => {
-    if (searched.length > 4) {
-      fetch(
-        `${api_urls.games}/api/games?&key=${api_secrets.games}&page_size=12&search=${searched}&search_precise=true`
-      )
-        .then((response) => response.json())
-        .then((data) => setGames(data.results));
+    const fetchSearchedGame = async () => {
+      if (searched.length > 4) {
+        try {
+          const url = `${api_urls.games}/api/games?&key=${api_secrets.games}&page_size=12&search=${searched}&search_precise=true`;
+          const response = await getSearchedGame(url);
+          const data = await response.json();
+
+          if (response.ok) {
+            setGames(data.results);
+          } else {
+            alert("Sorry no game found");
+          }
+        } catch (error) {
+          alert("Error: I did not find any games");
+        }
+      }
     }
+    fetchSearchedGame();
   }, [searched]);
 
   return (

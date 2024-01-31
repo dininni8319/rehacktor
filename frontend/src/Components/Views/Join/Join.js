@@ -49,7 +49,6 @@ export default function Join(params) {
           setStatus(full);
           return;
         }
-        // console.log(data.jwt,data.room_name,data, 'checking the token');
         setStatus(streaming);
 
         joinStreaming(
@@ -63,7 +62,6 @@ export default function Join(params) {
             StreamerFace.current.appendChild(track.attach());
           },
           () => setStatus(closed)
-
           // streamerVideoStarted,
           // streamerFaceStarted,
           // streamClosed

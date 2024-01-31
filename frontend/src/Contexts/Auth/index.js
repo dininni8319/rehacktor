@@ -5,7 +5,7 @@ import { logoutUser } from "../../Services/authServices";
 export const AuthContext = createContext();
 
 export function AuthProvider(props) {
-  const initialUser = localStorage.getItem("user");
+  const initialUser = localStorage.getItem("user"); // store data across browser section. The data persists even when the browsing session ends.
 
   let { api_urls } = useContext(ConfigContext);
 

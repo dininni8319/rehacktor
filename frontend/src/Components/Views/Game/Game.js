@@ -18,7 +18,7 @@ export default function Game() {
   useEffect(() => {
     const fetchGame = async () => {
        try {
-        const response = await  getGame(
+        const response = await getGame(
           api_urls.games, 
           slug, 
           api_secrets.games
@@ -30,8 +30,8 @@ export default function Game() {
           alert("An error occurred during fetching. Please try again.");
         }
        } catch (error) {
-        console.error("An error occurred:\t", error);
-        alert("Something went wrong");
+          console.error("An error occurred:\t", error);
+          alert("Something went wrong");
        }
     }
     fetchGame()
@@ -48,16 +48,14 @@ export default function Game() {
 
   const renderRatings = () => (
     <div className="d-flex flex-column">
-      {game?.ratings.map((el) => {
-          return (
-            <span
-              key={el.id}
-              className="text-decoration-none mx-2 text-white text-uppercase"
-            >
-              {el.title}
-            </span>
-          );
-        })}
+      {game?.ratings.map((el) => (
+        <span
+          key={el.id}
+          className="text-decoration-none mx-2 text-white text-uppercase"
+        >
+          {el.title}
+        </span>
+        ))}
     </div>
   );
 

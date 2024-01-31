@@ -3,24 +3,21 @@ import "./App.css";
 import Home from "./Components/Views/Home/Home";
 import Game from "./Components/Views/Game/Game";
 import Search from "./Components/Views/Search/Search";
-
+import Profile from "./Components/Views/Profile/Profile";
+import Sign from "./Components/Views/Sign/Sign";
 import Navbar from "./Components/UI/Navbar/Navbar";
 import Footer from "./Components/UI/Footer/Footer";
-
-import Sign from "./Components/Views/Sign/Sign";
-import Profile from "./Components/Views/Profile/Profile";
+import Stream from "./Components/Views/Stream/Stream";
+import Join from "./Components/Views/Join/Join";
 
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-
 import { AuthProvider } from "./Contexts/Auth/index";
 import { ConfigProvider } from "./Contexts/Config/index";
 import { StreamingProvider } from "./Contexts/Streaming/index";
-import Stream from "./Components/Views/Stream/Stream";
 
 //Utilities
 import ProtectedRoute from "./Components/Utilities/ProtectedRoute";
 import Streamers from "./Components/Views/Streamers/Streamers";
-import Join from "./Components/Views/Join/Join";
 
 function App() {
   return (

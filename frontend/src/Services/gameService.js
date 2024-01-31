@@ -9,3 +9,15 @@ export const getGenre = async (genreUrl) => {
 
   return response;
 }
+
+export const getGames = async (gamesUrl) => {
+  const response = await fetch(gamesUrl);
+
+  return response;
+}
+
+export const getSearchedGame = async (searchUrl) => {
+  const response = await fetch(searchUrl);
+
+  return response;
+}
