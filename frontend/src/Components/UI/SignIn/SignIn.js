@@ -13,7 +13,6 @@ export default function SignIn() {
 
   let { api_urls } = useContext(ConfigContext);
   let { login } = useContext(AuthContext);
-  // console.log(api_urls.backend, 'test backend 2');
   const Login = (event) => {
     event.preventDefault();
 

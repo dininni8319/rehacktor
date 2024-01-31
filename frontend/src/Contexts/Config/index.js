@@ -3,7 +3,6 @@ import { createContext } from 'react';
 export const ConfigContext = createContext();
 
 export function ConfigProvider(props) {
-    
   const { 
     REACT_APP_API_URL,
     REACT_APP_PROD,

@@ -49,6 +49,3 @@ const Modal = (props) => {
 
 export default Modal;
 
-// export default function Modal() {
-//     return <div className= 'bg-white'>Hello World</div>
-// }

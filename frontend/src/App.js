@@ -42,7 +42,6 @@ function App() {
                   </ProtectedRoute>
                 }
               />
-
               <Route
                 path="/stream/:game_name/:game_id"
                 element={

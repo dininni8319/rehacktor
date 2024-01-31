@@ -58,9 +58,6 @@ export default function Navbar() {
                 Search
               </Link>
             </li>
-            {/* <li className="nav-item">
-                <Link className="nav-link" to="/game">Game</Link>
-              </li> */}
             {user === null && (
               <li className="nav-item">
                 <Link className="nav-link" to="/sign">

@@ -14,7 +14,6 @@ export default function SignUp() {
 
   const signUp = (event) => {
     event.preventDefault();
-    // console.log({email: email.value, password: password.value}, 'response from the server when we try to login');
 
     fetch(`${api_urls.backend}/api/users/login`, {
       method: "POST",
@@ -30,8 +29,8 @@ export default function SignUp() {
       .then((data) => {
         const token = data.token;
 
-        /// una volta ricevuto il token, possiamo richiedere informazioni come username e email ad esempio
-        //alla rotta view profile
+        /// una volta ricevuto il token, possiamo richiedere informazioni aggiuntive come username e email
+        //rotta view profile
         fetch(`${api_urls.backend}/api/users/view-profile`, {
           method: "GET",
           headers: {

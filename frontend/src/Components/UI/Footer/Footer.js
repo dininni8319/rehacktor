@@ -2,8 +2,6 @@ import classes from "./Footer.module.css";
 
 export default function Footer() {
   return (
-    // <div className={"container-fluid pb-2 position-relative bg-cyan" + classes.borderGradTop}>Hello
-    // World!</div>
     <div
       className={`${"container-fluid"} ${"pb-2"} ${"position-relative"} ${"bg-cyan"} ${
         classes.borderGradTop
