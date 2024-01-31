@@ -14,7 +14,7 @@ freshdb: ## reset db
 	@cd backend && php artisan migrate:fresh && php artisan passport:install --force
 	
 dev: ## serve for development
-	@echo "strating Dev enviroment"
+	@echo "starting Dev enviroment"
 	@cd frontend && npm start &
 	@cd backend && php artisan serve --port=8001
 

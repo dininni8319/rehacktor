@@ -74,7 +74,6 @@ function joinStreaming(
   streamerFaceStarted,
   streamClosed
 ) {
- 
 
   return new Promise((resolve, reject) => {
     connect(jwt, { name: room_name, audio: false, video: false })

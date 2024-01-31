@@ -29,7 +29,6 @@ function App() {
         <StreamingProvider>
           <Router>
             <Navbar />
-
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/search/:genre/:num" element={<Search />} />
@@ -69,7 +68,6 @@ function App() {
                 }
               />
             </Routes>
-
             <Footer />
           </Router>
         </StreamingProvider>

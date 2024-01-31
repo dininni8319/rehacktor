@@ -19,7 +19,12 @@ export default function SignUp() {
     fetch(`${api_urls.backend}/api/users/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email: email.value, password: password.value }),
+      body: JSON.stringify(
+        { 
+          email: email.value, 
+          password: password.value 
+        }
+      ),
     })
       .then((response) => response.json())
       .then((data) => {

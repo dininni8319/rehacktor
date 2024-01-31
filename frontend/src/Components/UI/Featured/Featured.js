@@ -24,8 +24,7 @@ export default function Featured() {
     <>
       <div className="container">
         <div className="row">
-          {featured !== null &&
-            featured.map((el) => {
+          {featured?.map((el) => {
               return (
                 <div key={el.id} className="col-12 col-md-6 col-lg-3 d-flex justify-content-center">
                   <Card
