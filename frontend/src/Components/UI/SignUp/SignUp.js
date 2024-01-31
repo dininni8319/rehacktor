@@ -3,50 +3,82 @@ import { useNavigate } from "react-router";
 import { AuthContext } from "./../../../Contexts/Auth/index";
 import { useContext } from "react";
 import { ConfigContext } from "./../../../Contexts/Config";
+import { 
+  loginUser, 
+  viewProfile 
+} from "../../../Services/authServices";
 
 export default function SignUp() {
   const navigate = useNavigate();
   let { login } = useContext(AuthContext);
   let { api_urls } = useContext(ConfigContext);
-  // console.log(api_urls.backend, 'backend');
+
   const email = useInput("");
   const password = useInput("");
 
-  const signUp = (event) => {
+  const handleLogin = async () => {
+    try {
+      const response = await loginUser(
+        api_urls.backend,
+        email.value,
+        password.value
+      )
+      const data = await response.json();
+
+      if (response.ok) {
+        return data.token
+      } else {
+        alert("Login failed. Please check your credentials.");
+        return null;
+      }
+    } catch (error) {
+      console.error("An error occurred during login:", error);
+      alert("An error occurred during login. Please try again.");
+      return null;
+    }
+  };
+
+  const handleViewProfile = async (token) => {
+    try {
+      const response = await viewProfile(api_urls.backend, token);
+
+      const data = await response.json();
+
+      if(response.ok) {
+        return data.data
+      } else {
+        alert("Failed to fetch user profile");
+      }
+    } catch (error) {
+      console.error("An error occurred while fetching user profile:", error);
+      alert("An error occurred while fetching user profile. Please try again.");
+      return null;
+    }
+  }
+
+  const signin = async (event) => {
     event.preventDefault();
+    const isLoggedIn = await handleLogin();
+    if (isLoggedIn) {
+       const token = await handleLogin();
 
-    fetch(`${api_urls.backend}/api/users/login`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(
-        { 
-          email: email.value, 
-          password: password.value 
+      if (token) {
+        const userProfile = await handleViewProfile(token);
+
+        if (userProfile) {
+          login(
+            userProfile.name, 
+            token, 
+            userProfile.id
+          );
+          navigate('/');
         }
-      ),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        const token = data.token;
-
-        /// una volta ricevuto il token, possiamo richiedere informazioni aggiuntive come username e email
-        //rotta view profile
-        fetch(`${api_urls.backend}/api/users/view-profile`, {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
-          .then((response) => response.json())
-          .then((data) => {
-            login(data.data.name, token, data.data.id);
-            navigate("/"); //object history;
-          });
-      });
+      }
+    }
   };
 
   return (
-    <form className={`${"sign-form"}`} onSubmit={signUp}>
+    <form className={`${"sign-form"}`} onSubmit={signin}>
       <div className={`${"sign-top"}`}></div>
       <div className={`${"sign-bottom"}`}></div>
       <div className="mb-5">
@@ -74,7 +106,11 @@ export default function SignUp() {
         />
       </div>
       <div className="mb-5">
-        <button type="submit" className="btn btn-outline-info px-5 rounded-0">
+        <button 
+          type="submit" 
+          className="btn btn-outline-info px-5 rounded-0"
+          disabled={!email.value || !password.value}
+        >
           Login
         </button>
       </div>

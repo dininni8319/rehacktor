@@ -8,7 +8,7 @@ export default function Profile(params) {
     <div className="container min-vh-100">
       <div className="row min-vh-100">
         <div className="col-12 text-center mt-5">
-          <h3 className="mt-5">Welcome, {user ? user.username : "Utente"}</h3>
+          <h3 className="mt-5 text-capitalize">Welcome, {user ? user.username : "Utente"}</h3>
         </div>
         <div className="col-12">Todo: Statistiche Utente!</div>
       </div>

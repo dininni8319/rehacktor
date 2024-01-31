@@ -3,6 +3,11 @@ import useInput from "../../../Hooks/useInput";
 import { useNavigate } from "react-router";
 import { AuthContext } from "./../../../Contexts/Auth";
 import { ConfigContext } from "./../../../Contexts/Config";
+import { 
+  registerUser, 
+  loginUser, 
+  viewProfile
+} from "../../../Services/authServices";
 
 export default function SignIn() {
   const navigate = useNavigate();
@@ -11,71 +16,102 @@ export default function SignIn() {
   const password = useInput("");
   const passwordConfirm = useInput("");
 
-  let { api_urls } = useContext(ConfigContext);
-  let { login } = useContext(AuthContext);
-  const Login = (event) => {
+  const { api_urls } = useContext(ConfigContext);
+  const { login } = useContext(AuthContext);
+
+  const handleRegister = async () => {
+    try {
+      const response = await registerUser(
+        api_urls.backend, 
+        username.value, 
+        email.value, 
+        password.value, 
+        passwordConfirm.value
+      );
+
+      if (response.ok) {
+        return true;
+      } else {
+        alert("Registration failed. Please try again.");
+        return false;
+      }
+    } catch (error) {
+      console.error("An error occurred during registration:", error);
+      alert("An error occurred during registration. Please try again.");
+      return false;
+    }
+  };
+
+  const handleLogin = async () => {
+    try {
+      const response = await loginUser(
+        api_urls.backend, 
+        email.value, 
+        password.value
+      );
+      const data = await response.json();
+
+      if (response.ok) {
+        return data.token;
+      } else {
+        alert("Login failed. Please check your credentials.");
+        return null;
+      }
+    } catch (error) {
+      console.error("An error occurred during login:", error);
+      alert("An error occurred during login. Please try again.");
+      return null;
+    }
+  };
+
+  const handleViewProfile = async (token) => {
+    try {
+      const response = await viewProfile(api_urls.backend, token);
+      const data = await response.json();
+
+      if (response.ok) {
+        return data.data;
+      } else {
+        alert("Failed to fetch user profile.");
+        return null;
+      }
+    } catch (error) {
+      console.error("An error occurred while fetching user profile:", error);
+      alert("An error occurred while fetching user profile. Please try again.");
+      return null;
+    }
+  };
+
+  const signup = async (event) => {
     event.preventDefault();
 
     if (password.value === passwordConfirm.value) {
-      // proseguire
-      //fetch register
-      //fetch login
-      //fetch view-profile
+      const isRegistered = await handleRegister();
 
-      fetch(`${api_urls.backend}/api/users/register`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: username.value,
-          email: email.value,
-          password: password.value,
-          password_confirmation: passwordConfirm.value,
-        }),
-      })
-        .then((response) => {
-          if (response.ok) {
+      if (isRegistered) {
+        const token = await handleLogin();
+
+        if (token) {
+          const userProfile = await handleViewProfile(token);
+
+          if (userProfile) {
+            login(
+              userProfile.name, 
+              token, 
+              userProfile.id
+            );
             navigate("/");
-            return response.json();
-          } else {
-            alert("ops..");
           }
-        })
-        .then(() => {
-          fetch(`${api_urls.backend}/api/users/login`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              email: email.value,
-              password: password.value,
-            }),
-          })
-            .then((response) => response.json())
-            .then((data) => {
-              const token = data.token;
-
-              /// una volta ricevuto il token, possiamo richiedere informazioni come username e email ad esempio
-              //alla rotta view profile
-              fetch(`${api_urls.backend}/api/users/view-profile`, {
-                method: "GET",
-                headers: {
-                  Authorization: `Bearer ${token}`,
-                },
-              })
-                .then((response) => response.json())
-                .then((data) => {
-                  login(data.data.name, token, data.data.id);
-                  navigate("/"); //object history;
-                });
-            });
-        });
+        }
+      }
     } else {
-      alert("the passwords are not the same");
+      alert("The passwords do not match");
     }
   };
 
   return (
     <>
-      <form className={`${"sign-form"}`} onSubmit={Login}>
+      <form className={`${"sign-form"}`} onSubmit={signup}>
         <div className={`${"sign-top"}`}></div>
         <div className={`${"sign-bottom"}`}></div>
         <div className="mb-5">
@@ -123,7 +159,17 @@ export default function SignIn() {
           />
         </div>
         <div className="mb-5">
-          <button type="submit" className="btn btn-outline-info px-5 rounded-0">
+          <button 
+            type="submit" 
+            className="btn btn-outline-info px-5 rounded-0"
+            disabled={
+              !(
+                email.value && 
+                password.value && 
+                password.value 
+              ) 
+            }
+          >
             Register
           </button>
         </div>
