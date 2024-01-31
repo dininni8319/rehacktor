@@ -1,5 +1,6 @@
 import { useState, useContext, createContext } from "react";
 import { ConfigContext } from "./../Config";
+import { logoutUser } from "../../Services/authServices";
 
 export const AuthContext = createContext();
 
@@ -20,17 +21,23 @@ export function AuthProvider(props) {
     localStorage.setItem("user", JSON.stringify(obj));
   };
 
-  const logout = () => {
-    fetch(`${api_urls.backend}/api/users/logout`, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${user.token}`,
-      },
-    }).then(() => {
-      localStorage.removeItem("user");
-      setUser(null);
-    });
+  const logout = async () => {
+    try {
+      const response = await logoutUser(api_urls.backend, user.token)
+      const data = await response.json();
+
+      if (response.ok) {
+        localStorage.removeItem("user");
+        setUser(null);
+      } else {
+        alert("An error accured while logging out");
+      }
+    } catch (error) {
+      console.error("An error occurred while logging out:", error);
+      alert("An error occurred while logging out. Please try again.");
+    }
   };
+
   return (
     <AuthContext.Provider value={{ user, login, logout }}>
       {props.children}

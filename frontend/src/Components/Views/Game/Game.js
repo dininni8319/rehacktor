@@ -7,22 +7,94 @@ import { ConfigContext } from "../../../Contexts/Config/index";
 import { AuthContext } from "./../../../Contexts/Auth/index";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronCircleRight } from "@fortawesome/free-solid-svg-icons";
+import { getGame } from "../../../Services/gameService";
 
 export default function Game() {
   let { slug } = useParams();
-
   let { api_urls, api_secrets } = useContext(ConfigContext);
-
   const [game, setGame] = useState(null);
-
   let { user } = useContext(AuthContext);
 
   useEffect(() => {
-    fetch(`${api_urls.games}/api/games/${slug}?&key=${api_secrets.games}`)
-      .then((resp) => resp.json())
-      .then((data) => setGame(data));
+    const fetchGame = async () => {
+       try {
+        const response = await  getGame(
+          api_urls.games, 
+          slug, 
+          api_secrets.games
+        );
+        const data = await response.json();
+        if (response.ok) {
+          setGame(data);
+        } else {
+          alert("An error occurred during fetching. Please try again.");
+        }
+       } catch (error) {
+        console.error("An error occurred:\t", error);
+        alert("Something went wrong");
+       }
+    }
+    fetchGame()
   }, [slug]);
 
+  const renderStreamers = () => (
+    <ul>
+      <li>Salvatore Dininni</li>
+      <li>Sandro Corciulo</li>
+      <li>Antonio Donofrio</li>
+      <li>Giancarlo Vinci</li>
+    </ul>
+  );
+
+  const renderRatings = () => (
+    <div className="d-flex flex-column">
+      {game?.ratings.map((el) => {
+          return (
+            <span
+              key={el.id}
+              className="text-decoration-none mx-2 text-white text-uppercase"
+            >
+              {el.title}
+            </span>
+          );
+        })}
+    </div>
+  );
+
+  const renderGenres = () => (
+    <div className="d-flex">
+      {game?.genres.map((el) => (
+          <Link
+            key={el.id}
+            to={`/search/${el.slug}/1`}
+            className="text-decoration-none mx-2"
+          >
+            <button className="btn btn-outline-info mt-2">
+              {el.name}
+            </button>
+          </Link>
+       ))}
+    </div>
+  )
+
+  const renderStartStreamButton = () => (
+    <>
+       {user ? (
+          <Link
+            to={`/stream/${game.slug}/${game.id}`}
+            className="h4 text-main text-decoration-none fts-italic d-flex align-items-center"
+          >
+            <FontAwesomeIcon
+              icon={faChevronCircleRight}
+              className="fa-1x mx-1 text-main mb-2 mx-3"
+            ></FontAwesomeIcon>
+            <h3>Start Your Stream</h3>
+          </Link>
+        ) : (
+          "You must be logged in if you want to stream"
+        )}
+    </>
+  )
   return (
     <>
       {game ? (
@@ -52,65 +124,21 @@ export default function Game() {
                 />
               </div>
             </div>
-
             <div className="row mt-5">
               <div className="col-12 col-md-6 col-lg-3">
                 <h3>Genres</h3>
-                <div className="d-flex">
-                  {game.genres &&
-                    game.genres.map((el) => (
-                      <Link
-                        key={el.id}
-                        to={`/search/${el.slug}/1`}
-                        className="text-decoration-none mx-2"
-                      >
-                        <button className="btn btn-outline-info mt-2">
-                          {el.name}
-                        </button>
-                      </Link>
-                    ))}
-                </div>
+                {renderGenres()}
               </div>
               <div className="col-12 col-md-6 col-lg-3">
                 <h3>Rating</h3>
-                <div className="d-flex flex-column">
-                  {game.ratings &&
-                    game.ratings.map((el) => {
-                      return (
-                        <span
-                          key={el.id}
-                          className="text-decoration-none mx-2 text-white text-uppercase"
-                        >
-                          {el.title}
-                        </span>
-                      );
-                    })}
-                </div>
+                {renderRatings()}
               </div>
               <div className="col-12 col-md-6 col-lg-3">
                 <h3>Streamers</h3>
-                <ul>
-                  <li>Salvatore Dininni</li>
-                  <li>Sandro Corciulo</li>
-                  <li>Antonio Donofrio</li>
-                  <li>Giancarlo Vinci</li>
-                </ul>
+                {renderStreamers()}
               </div>
               <div className="col-12 col-md-6 col-lg-3">
-                {user ? (
-                  <Link
-                    to={`/stream/${game.slug}/${game.id}`}
-                    className="h4 text-main text-decoration-none fts-italic d-flex align-items-center"
-                  >
-                    <FontAwesomeIcon
-                      icon={faChevronCircleRight}
-                      className="fa-1x mx-1 text-main mb-2 mx-3"
-                    ></FontAwesomeIcon>
-                    <h3>Start Your Stream</h3>
-                  </Link>
-                ) : (
-                  "You must be logged in if you want to stream"
-                )}
+                {renderStartStreamButton()}
               </div>
             </div>
           </div>

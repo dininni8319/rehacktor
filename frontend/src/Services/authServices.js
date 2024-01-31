@@ -37,3 +37,14 @@ export const viewProfile = async (apiUrl, token) => {
 
   return response;
 };
+
+export const logoutUser = async (apiUrl, token) => {
+  const response = await fetch(`${apiUrl}/api/users/logout`,{
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    }
+  })
+
+  return response;
+}

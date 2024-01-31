@@ -13,32 +13,32 @@ import {
 import Loader from "../../UI/Loader/Loader";
 import { useContext } from "react";
 import { ConfigContext } from "../../../Contexts/Config/index";
-
-// import Game from '../Game/Game';
+import { getGenre } from "../../../Services/gameService";
 
 export default function Search() {
   const [genres, setGenres] = useState(null);
-
-  let { genre } = useParams();
-
-  let { num } = useParams();
-
+  const [searched, setSearched] = useState("");
   const [games, setGames] = useState(null);
 
-  const [searched, setSearched] = useState("");
-
+  let { genre } = useParams();
+  let { num } = useParams();
   let { api_urls, api_secrets } = useContext(ConfigContext);
 
   let searchGenre = `${api_urls.games}/api/genres?&key=${api_secrets.games}`;
 
-  let searchGame = `${api_urls.games}/api/games?&key=${api_secrets.games}&genres=${genre}&page=${num}&page_size=12`;
-
   useEffect(() => {
-    fetch(searchGenre)
-      .then((resp) => resp.json())
-      .then((data) => {
-        setGenres(data.results);
-      });
+    const fetchGenre = async () => {
+      try {
+        const response = await getGenre(searchGenre);
+        const data = await response.json();
+        if (response.ok) {
+          setGenres(data.results)
+        }
+      } catch (error) {
+        alert("Error: I did not find any genre");
+      }
+    }
+    fetchGenre();
   }, []);
 
   useEffect(() => {
@@ -90,14 +90,13 @@ export default function Search() {
                     className="fa-1x text-white text-decoration-none pb-0"
                   />
                 </button>
-                {/* {searched} */}
+
               </div>
             </div>
           </div>
           {!searched && (
             <div className="row justify-content-between mb-5 mt-5">
               <div className="col-2">
-                {/* <Link to={`/search/${genre}/${+num  > 0 ? +num - 1 : 0}`} className="text-decoration-none">Next</Link> */}
                 {num > 1 ? (
                   <Link
                     to={`/search/${genre}/${+num - 1}`}
@@ -113,7 +112,6 @@ export default function Search() {
                 )}
               </div>
               <div className="col-2">
-                {/* <Link to={`/search/${genre}/${+num < 11 ? +num + 1 : 11}`} className="text-decoration-none">Next</Link> */}
                 {num < 11 ? (
                   <Link
                     to={`/search/${genre}/${+num + 1}`}
