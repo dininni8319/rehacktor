@@ -29,7 +29,6 @@ export default function Join(params) {
   const token = JSON.parse(localStorage.getItem("user")).token;
 
   useEffect(() => {
-    
     fetch(`${api_urls.backend}/api/users/room/join`, {
       method: "POST",
       headers: {

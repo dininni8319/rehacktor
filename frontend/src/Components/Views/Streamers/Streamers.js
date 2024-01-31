@@ -4,28 +4,36 @@ import { ConfigContext } from "../../../Contexts/Config";
 import { useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronCircleRight } from "@fortawesome/free-solid-svg-icons";
+import { millToHour } from "../../../utilities/functions";
+import { getActiveRooms } from "../../../Services/streamService";
 
 export default function Streamers(params) {
   const [rooms, setRooms] = useState(null);
   const { api_urls } = useContext(ConfigContext);
 
   useEffect(() => {
-    fetch(`${api_urls.backend}/api/users/room/roomsActive`)
+    const fetchActiveRooms = async () => {
+      try {
+        const url = `${api_urls.backend}/api/users/room/roomsActive`
+        const response = await getActiveRooms(url);
+        const data = await response.json();
+  
+        if (response.ok) {
+          setRooms(data);
+        } else {
+          alert('Rooms not found!');
+        }
+      } catch (error) {
+        alert("An error occured!");
+      }
+      fetchActiveRooms();
+    }
+    fetch()
       .then((response) => response.json())
       .then((rooms) => {
         setRooms(rooms);
       });
   }, []);
-  // console.log(rooms, 'le stanze');
-
-  function millToHour(n) {
-    let t = n / (1000 * 60);
-    let h = Math.floor(t / 60);
-
-    let m = t % 60;
-
-    return `${h}h ${m.toFixed(0)}min`;
-  }
   
   return (
     <div className="container pt-5 min-vh-100">
