@@ -3,9 +3,11 @@
 <h3>Overview</h3>
 <p>
 This application allows users to search for a game, and share the streaming while they are playing with their friends.</p>
-<h3>Comandi di autonomazione.</h3> 
+<h3>Useful commands run the application, install packages, and update the DB.</h3> 
 <strong>make dev </strong> = specifica la tipologia di comando, avvia entrambi le applicazioni, backend and frontend, con un unico commando di autonomazione.
+<br>
 <strong>make freshdb</strong> = command that resets the db
+<br>
 <strong>make install</strong> = performs installations setup
 
 <h3>Packages/Commands:</h3>
@@ -94,6 +96,7 @@ Spoken languages: Italian, English, German.</p>
 <br>
 <strong>More details...<strong>
 <b>LinkedIn Profile: <a href="https://www.linkedin.com/in/salvatoredininni/" >https://www.linkedin.com/in/salvatoredininni/ </a></b>
+<br>
 <b>Portfolio Website: <a href="https://portafolio-app-79yi-dininni8319.vercel.app/" >https://salvatore-dininni.com</a></b> 
 
 <h3>My other projects:</h3>
