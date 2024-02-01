@@ -5,6 +5,7 @@ import { ConfigContext } from "./../../../Contexts/Config/index";
 import { StreamingContext } from "./../../../Contexts/Streaming";
 import { useContext, useRef } from "react";
 import useInput from "./../../../Hooks/useInput";
+import { closeRoom, createRoom } from "../../../Services/streamService";
 
 export default function Stream() {
   const myFaceVideo = useRef(null);
@@ -16,63 +17,49 @@ export default function Stream() {
   const number = useInput(1);
   const token = JSON.parse(localStorage.getItem("user")).token;
 
-  function startStream(ev) {
-    ev.preventDefault();
+  const startStream = async (ev) => {
+    try {
+      ev.preventDefault();
+  
+      let object = {
+        game_name: game_name,
+        game_id: game_id,
+        max_seats_available: number.value,
+      };
+  
+      const response = await createRoom(
+        object,
+        token,
+        api_urls.backend
+      )
 
-    let object = {
-      game_name: game_name,
-      game_id: game_id,
-      max_seats_available: number.value,
-    };
-
-    //creo la stanza  e attengo jwt
-    fetch(`${api_urls.backend}/api/users/room/`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify(object),
-    })
-      .then((resp) => resp.json())
-      .then((data) => {
-        localStorage.setItem("game", JSON.stringify(object));
-        //attivare lo streaming
-        startStreaming(data.twilio.jwt, data.twilio.room_name, myFaceVideo)
-          .then(() => {
-            console.log("streaming lanciato");
-            setStreamingOn();
-          })
-          .catch((e) => {
-            console.log("errore", e);
-            endStream();
-          });
-      });
+      const data = await response.json();
+      localStorage.setItem("game", JSON.stringify(object));
+  
+      // Attivare lo streaming
+      await startStreaming(data.twilio.jwt, data.twilio.room_name, myFaceVideo);
+      console.log("streaming lanciato");
+      setStreamingOn();
+    } catch (error) {
+      console.log("errore", error);
+      endStream();
+    }
   }
-
-  function endStream(params) {
-    fetch(`${api_urls.backend}/api/users/room/close`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    })
-      .then((resp) => {
-        if (!resp.ok) {
-          throw new Error("Ops....");
-        }
-        return resp.json();
-      })
-      .then((data) => {
-        localStorage.removeItem("game");
-        setStreamingOff();
-      })
-      .catch((error) => {
-        console.log("Error:", error);
-      });
+  
+  const endStream = async (ev) => {
+    try {
+      const response = await closeRoom(token, api_urls.backend);
+  
+      if (!response.ok) {
+        throw new Error("Ops....");
+      }
+      localStorage.removeItem("game");
+      setStreamingOff();
+    } catch (error) {
+      console.log("Error:", error);
+    }
   }
-
+  
   return (
     <div className="container min-vh-100">
       <div className="row pt-5">

@@ -22,9 +22,8 @@ class RoomController extends Controller
     public function create(Request $request) { //abbiamo bisogno della post per inviare delle informazioni 
         
         $user = Auth::guard('api')->id();
-        
+    
         // getting the logged user
-      
         // here we are checking if the user has a room with null record, will return an error json
         if (Room::where('user_id', $user)->where('closed_at', null)->first()) {
             return response()->json([
@@ -125,7 +124,6 @@ class RoomController extends Controller
         }
 
         return response()->json(["status" => "ok, room closed"], 200);
-
     }
 
     public function join(Request $request) {
@@ -135,12 +133,11 @@ class RoomController extends Controller
         $room = Room::find($room_id);
 
         if ($room->closed_at) {
-            return response()->json("room closed");
+            return response()->json("closed");
         }
 
         if ($room->seats == $room->max_seats_available) {
-            return response()->json("no more seats available");
-
+            return response()->json("not-available");
         }
 
         $room->seats++;
@@ -177,7 +174,6 @@ class RoomController extends Controller
     }
 
     public function streamerInfo(Room $room) {
-
         $stremer_id = $room->user->name;
         $game_name = $room->game_name;
         
@@ -195,12 +191,9 @@ class RoomController extends Controller
     }
     
     public function roomsByGame(Request $request) {
-    
         $rooms = Room::with('user:id,name')->where('game_id', $request->game_id)->where('closed_at', null)->get();
         return response()->json(
            $rooms
         );
     }
-    
-
 }

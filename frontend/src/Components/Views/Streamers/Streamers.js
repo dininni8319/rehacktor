@@ -31,7 +31,7 @@ export default function Streamers(params) {
   }, [api_urls.backend]);
   
   return (
-    <div className="container component-height">
+    <div className="container pt-5 min-vh-100">
       <div className="row mt-5 pt-5">
         <div className="col-12 pt-5">
           <h1>Choose your streamer</h1>
@@ -61,6 +61,7 @@ export default function Streamers(params) {
                         </td>
                         <td className="pt-3">{room.max_seats_available}</td>
                         <td className="pt-3">
+                          {/*It eturns the difference in milliseconds and the function will covert it */}
                           {millToHour(new Date() - new Date(room.created_at))}
                         </td>
                         <td className="pt-3 text-white">

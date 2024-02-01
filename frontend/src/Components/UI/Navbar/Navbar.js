@@ -20,6 +20,10 @@ export default function Navbar() {
   const [ modal, setModal ] = useState(false);
   const closeModal = () => setModal(false);
   
+  const handleLogout = () => {
+     logout();
+     closeModal();
+  }
   const renderNotAuthenticatedLinks = () => (
     <>
       <li className="nav-item">
@@ -117,7 +121,6 @@ export default function Navbar() {
         >
           <ul className="navbar-nav d-flex align-items-end ms-md-auto align-items-md-center">
             {renderNotAuthenticatedLinks()}
-
             {user && (
               renderAuthenticatedLinks()
             )}
@@ -131,7 +134,7 @@ export default function Navbar() {
           message="Vuoi gia lasciarci, ricorda che eventuali streeming in corso saranno interrotti"
           confirmMessage="Esci"
           declineMessage="Rimani sulla pagina"
-          action={logout}
+          action={handleLogout}
         />}
     </nav>
   );
