@@ -1,24 +1,19 @@
-<h1>Project Title: Rehacktor</h1>
-
+<h1>Rehacktor</h1>
 <h2>React, Laravel App.</h2>
-<br>
 <h3>Overview</h3>
-<br>
 <p>
 This application allows users to search for a game, and share the streaming while they are playing with their friends.</p>
-<br>
 <h3>Comandi di autonomazione.</h3> 
-<br> 
 <strong>make dev </strong> = specifica la tipologia di comando, avvia entrambi le applicazioni, backend and frontend, con un unico commando di autonomazione.
 <strong>make freshdb</strong> = command that resets the db
 <strong>make install</strong> = performs installations setup
-<br>
+
 <h3>Packages/Commands:</h3>
 #npx create-react-app "name"<br>
 #npm i react-router-dom<br>
 #npm uninstall react-router-dom<br>
 #npm install react-router-dom@5.2<br>
-<br>
+
 ## API calls examples
 
 ###To test httpie
@@ -75,9 +70,11 @@ http GET http://localhost:8001/api/users/count
 <strong>php artisan route:cache</strong>
 <strong>php artisan optimize</strong>
 
-<h2>Full-Stack Developer ___ <span>Salvatore Dininni</span></h2>
+<h2>Full-Stack Developer: <span>Salvatore Dininni</span></h2>
 
-<h4>Something about Me<h4>
+<h4>Something about Me...<h4>
+<p>From the sizzling world of the kitchen to the dynamic realm of tech, my journey took an unexpected turn during the pandemic. Embracing the art of coding with TypeScript, the younger cousin of JavaScript, has become my passion. With a deep understanding of frontend technologies, I bring a unique blend of creativity and technical prowess to every project. Currently exploring new opportunities in the frontend landscape – let's create something amazing together!</p>
+
 <p>A Highly Motivated Individual, open to new challenges and quickly learns new technologies. Self-driven, dedicated, and hard-working. Passionate about Web Development, Web Design, and Web Technologies.</p>
 <br/>
 <p>
