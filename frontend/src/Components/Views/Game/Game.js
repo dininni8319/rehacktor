@@ -11,6 +11,8 @@ import { getGame } from "../../../Services/gameService";
 
 export default function Game() {
   let { slug } = useParams();
+  console.log("🚀 ~ Game ~ slug:", slug)
+  
   let { api_urls, api_secrets } = useContext(ConfigContext);
   const [game, setGame] = useState(null);
   let { user } = useContext(AuthContext);

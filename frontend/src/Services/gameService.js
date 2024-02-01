@@ -21,3 +21,9 @@ export const getSearchedGame = async (searchUrl) => {
 
   return response;
 }
+
+export const getMostPopularGames = async (gamesUrl) => {
+  const response = await fetch(gamesUrl)
+
+  return response;
+}
