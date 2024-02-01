@@ -28,7 +28,7 @@ export default function Streamers(params) {
       }
     }
     fetchActiveRooms();
-  }, []);
+  }, [api_urls.backend]);
   
   return (
     <div className="container pt-5 min-vh-100">

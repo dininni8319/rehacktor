@@ -44,18 +44,6 @@ export default function Navbar() {
   const renderAuthenticatedLinks = () => (
     <>
       <li className="nav-item">
-        {modal && (
-          <Modal
-            closeModal={closeModal}
-            title="O no..."
-            message="Vuoi gia lasciarci, ricorda che eventuali streeming in corso saranno interrotti"
-            confirmMessage="Esci"
-            declineMessage="Rimani sulla pagina"
-            action={logout}
-          />
-        )}
-      </li>
-      <li className="nav-item">
         <NavLink
           to="/streamers"
           
@@ -75,7 +63,7 @@ export default function Navbar() {
           >
           </FontAwesomeIcon>
           <span>
-           {user.username ? formatUsername(user.username) : "Welcome User"}
+           {user.username?.includes(" ") ? formatUsername(user.username) : "Welcome User"}
           </span>
 
           {isStreaming && (
@@ -133,6 +121,14 @@ export default function Navbar() {
               renderAuthenticatedLinks()
             )}
           </ul>
+          {modal && <Modal
+            closeModal={closeModal}
+            title="O no..."
+            message="Vuoi gia lasciarci, ricorda che eventuali streeming in corso saranno interrotti"
+            confirmMessage="Esci"
+            declineMessage="Rimani sulla pagina"
+            action={logout}
+           />}
         </div>
         <div className={classes.navLogo}></div>
       </div>

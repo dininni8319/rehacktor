@@ -35,7 +35,7 @@ export default function Game() {
        }
     }
     fetchGame()
-  }, [slug]);
+  }, [slug, api_urls.games, api_secrets.games]);
 
   const renderStreamers = () => (
     <ul>

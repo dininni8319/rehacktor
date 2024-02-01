@@ -24,7 +24,6 @@ export function AuthProvider(props) {
   const logout = async () => {
     try {
       const response = await logoutUser(api_urls.backend, user.token)
-      const data = await response.json();
 
       if (response.ok) {
         localStorage.removeItem("user");

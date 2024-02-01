@@ -61,9 +61,6 @@ export default function Join(params) {
             StreamerFace.current.appendChild(track.attach());
           },
           () => setStatus(closed)
-          // streamerVideoStarted,
-          // streamerFaceStarted,
-          // streamClosed
         );
       })
       .then(() => {
@@ -76,7 +73,7 @@ export default function Join(params) {
           .then((resp) => resp.json())
           .then((data) => setInfo(data));
       });
-  }, []);
+  }, [api_urls.backend, room_id, closed, full, token, streaming]);
 
   const showLoading = () => {
     if (status === loading) return <Loader />;

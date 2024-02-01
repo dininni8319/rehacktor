@@ -11,9 +11,7 @@ export function millToHour(n) {
 }
 
 export const formatUsername = (username) => {
-  const initials = username.split(' ');
-  const firstName = initials[0].slice(0,1).toUpperCase();
-  const lastName = initials[1].slice(0,1).toUpperCase();
+  const [firstName = "", lastName = ""] = username.split(' ');
 
-  return `${firstName}${lastName}`;
-}
+  return `${firstName.slice(0, 1).toUpperCase()}${lastName.slice(0, 1).toUpperCase()}`;
+};
