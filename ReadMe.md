@@ -57,18 +57,18 @@ http GET http://localhost:8001/api/users/room/roomsByGame
 http GET http://localhost:8001/api/users/count
 
 #use it when the env variables are not giving the correct value
-<strong>php artisan config:clear</strong>
-<strong>php artisan optimize:clear</strong>
+<strong>php artisan config:clear</strong><br>
+<strong>php artisan optimize:clear</strong><br>
 
 # or try these
-<strong>php artisan cache:clear</strong>
-<strong>php artisan config:clear</strong>
-<strong>php artisan route:clear</strong>
-<strong>And then after changes run these:</strong>
+<strong>php artisan cache:clear</strong><br>
+<strong>php artisan config:clear</strong><br>
+<strong>php artisan route:clear</strong><br>
+<strong>And then after changes run these:</strong><br>
 
-<strong>php artisan config:cache</strong>
-<strong>php artisan route:cache</strong>
-<strong>php artisan optimize</strong>
+<strong>php artisan config:cache</strong><br>
+<strong>php artisan route:cache</strong><br>
+<strong>php artisan optimize</strong><br>
 
 <h2>Full-Stack Developer: <span>Salvatore Dininni</span></h2>
 
@@ -91,22 +91,14 @@ Completed Full-Stack Bootcamp with Propulsion Academy based in Zurich, Switzerla
 <br/>
 <p>
 Spoken languages: Italian, English, German.</p>
-<br/>
-<br/>
-<br/>
+<br>
 <strong>More details...<strong>
 <b>LinkedIn Profile: <a href="https://www.linkedin.com/in/salvatoredininni/" >https://www.linkedin.com/in/salvatoredininni/ </a></b>
-<b>Portfolio Website: <a href="https://salvatore-dininni.com/" >https://salvatore-dininni.com</a></b> 
+<b>Portfolio Website: <a href="https://portafolio-app-79yi-dininni8319.vercel.app/" >https://salvatore-dininni.com</a></b> 
 
 <h3>My other projects:</h3>
 
-<b>MERN Ecommerce App: <a href="http://ecommerce-mern.salvatore-dininni.com/" >http://ecommerce-mern.salvatore-dininni.com/</a></b> 
-
-<b>Game Streaming App: <a href="https://rehacktor.salvatore-dininni.com/" >https://rehacktor.salvatore-dininni.com/</a></b> 
-
 <b>Search Bar: <a href="http://github-search.salvatore-dininni.com">http://github-search.salvatore-dininni.com</a></b>
-
-<b>Task App, React and Laravel Stack: <a href="https://task.salvatore-dininni.com">https://task.salvatore-dininni.com</a></b>
 
 <b>Ricorsi App, React and Laravel Stack: <a href="https://ricorsi.salvatore-dininni.com">https://ricorsi.salvatore-dininni.com</a></b>
 
