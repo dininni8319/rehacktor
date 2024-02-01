@@ -9,23 +9,17 @@ import { ConfigContext } from "../../../Contexts/Config";
 
 export default function Join(params) {
   const { room_id } = useParams();
-
+  const { api_urls } = useContext(ConfigContext);
   const StreamerVideo = useRef("video");
   const StreamerFace = useRef("face");
-
   const [loading, streaming, closed, full] = [
     "loading",
     "streaming",
     "closed",
     "full",
   ];
-
   const [status, setStatus] = useState(loading);
-
   const [info, setInfo] = useState();
-
-  let { api_urls } = useContext(ConfigContext);
-
   const token = JSON.parse(localStorage.getItem("user")).token;
 
   useEffect(() => {

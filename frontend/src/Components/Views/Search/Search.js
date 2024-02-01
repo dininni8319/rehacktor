@@ -42,7 +42,6 @@ export default function Search() {
   });
 
   useEffect(() => {
-
     const fetchGames = async() => {
       try {
         const url = `${api_urls.games}/api/games?&key=${api_secrets.games}&genres=${genre}&page=${num}&page_size=12`;
@@ -79,6 +78,27 @@ export default function Search() {
     }
     fetchSearchedGame();
   }, [searched, api_secrets.games, api_urls.games]);
+
+  const renderGames = () => (
+    <div className="row">
+      {games ? (
+        games.map((game) => {
+          return (
+            <div className="col-12 col-md-6 col-lg-4 mb-5 d-flex justify-content-center" key={game.id}>
+              <Card
+                image={game.background_image}
+                name={game.name}
+                playtime={game.playtime}
+                slug={game.slug}
+              />
+            </div>
+          );
+        })
+      ) : (
+        <Loader />
+      )}
+    </div>
+  );
 
   return (
     <div
@@ -148,24 +168,7 @@ export default function Search() {
               </div>
             </div>
           )}
-          <div className="row">
-            {games ? (
-              games.map((game) => {
-                return (
-                  <div className="col-12 col-md-6 col-lg-4 mb-5 d-flex justify-content-center" key={game.id}>
-                    <Card
-                      image={game.background_image}
-                      name={game.name}
-                      playtime={game.playtime}
-                      slug={game.slug}
-                    />
-                  </div>
-                );
-              })
-            ) : (
-              <Loader />
-            )}
-          </div>
+          {renderGames()}
         </div>
       </div>
     </div>

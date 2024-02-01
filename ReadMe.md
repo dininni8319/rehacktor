@@ -1,9 +1,24 @@
-Comandi di autonomazione.
+<h1>Project Title: Rehacktor</h1>
 
-<strong>make dev </strong>= specifica la tipologia di comando, avvia entrambi le applicazioni, backend and frontend, con un unico commando di autonomazione.
+<h2>React, Laravel App.</h2>
+<br>
+<h3>Overview</h3>
+<br>
+<p>
+This application allows users to search for a game, and share the streaming while they are playing with their friends.</p>
+<br>
+<h3>Comandi di autonomazione.</h3> 
+<br> 
+<strong>make dev </strong> = specifica la tipologia di comando, avvia entrambi le applicazioni, backend and frontend, con un unico commando di autonomazione.
 <strong>make freshdb</strong> = command that resets the db
 <strong>make install</strong> = performs installations setup
-
+<br>
+<h3>Packages/Commands:</h3>
+#npx create-react-app "name"<br>
+#npm i react-router-dom<br>
+#npm uninstall react-router-dom<br>
+#npm install react-router-dom@5.2<br>
+<br>
 ## API calls examples
 
 ###To test httpie
@@ -45,8 +60,6 @@ http GET http://localhost:8001/api/users/room/roomsByGame
 
 ### count users
 http GET http://localhost:8001/api/users/count
-s.dininni@yahoo.com
-
 
 #use it when the env variables are not giving the correct value
 <strong>php artisan config:clear</strong>
@@ -61,35 +74,6 @@ s.dininni@yahoo.com
 <strong>php artisan config:cache</strong>
 <strong>php artisan route:cache</strong>
 <strong>php artisan optimize</strong>
-
-<h1>Project Title: Rehacktor</h1>
-
-<h2>React, Laravel App.</h2>
-
-<h3>Packages/Commands:</h3>
-#npx create-react-app "name"
-#npm i react-router-dom
-#npm uninstall react-router-dom
-#npm install react-router-dom@5.2
-
-Packages
-boostrap-material
-#https://mdbootstrap.com/docs/standard/getting-started/installation/
-
-Ant-design
-#https://ant.design/
-#npm i @ant-design/icons
-#npm i antd
-
-Firebase
-npm i firebase@9.6.7
-https://firebase.google.com/
-
-npm i react-toastify
-
-#npm i redux react-redux redux-devtools-extension
-
-https://codecontinue.com/article/deploy-react-node-mern-full-stack-app-to-digital-ocean
 
 <h2>Full-Stack Developer ___ <span>Salvatore Dininni</span></h2>
 
@@ -111,8 +95,6 @@ Completed Full-Stack Bootcamp with Propulsion Academy based in Zurich, Switzerla
 <p>
 Spoken languages: Italian, English, German.</p>
 <br/>
-<p>
-I will share GitLab and Github accounts upon request.</p>
 <br/>
 <br/>
 <strong>More details...<strong>
