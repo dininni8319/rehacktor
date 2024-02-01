@@ -1,7 +1,6 @@
 import classes from "./Modal.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
-
 import { createPortal } from "react-dom";
 
 const Backdrop = (props) => {
@@ -38,6 +37,7 @@ const Overlay = (props) => {
 const Modal = (props) => {
   return (
     <>
+    {/* Method that allows you to render a react element outside the current DOM */}
       {createPortal(
         <Backdrop closeModal={props.closeModal} />,
         document.getElementById("backdrop")

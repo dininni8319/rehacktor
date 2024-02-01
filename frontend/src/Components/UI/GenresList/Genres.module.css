@@ -4,6 +4,7 @@
   overflow-y: scroll;
 }
 
+/* Effect over on the genres sidebar*/
 .genres-wrapper button:hover {
   padding-left: 30px;
   transition: 0.3s;

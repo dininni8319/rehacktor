@@ -166,7 +166,7 @@ export default function SignIn() {
               !(
                 email.value && 
                 password.value && 
-                password.value 
+                passwordConfirm.value 
               ) 
             }
           >

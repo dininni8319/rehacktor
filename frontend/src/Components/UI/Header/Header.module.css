@@ -8,6 +8,7 @@ header {
 }
 
 header video {
+  /*used for the video positioning*/
   position: absolute;
   top: 50%;
   left: 50%;

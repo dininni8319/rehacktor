@@ -20,7 +20,7 @@ export function ConfigProvider(props) {
   };
 
   const api_secrets = {
-      games: REACT_APP_GAMES_SECRET
+    games: REACT_APP_GAMES_SECRET
   }
     
   return (

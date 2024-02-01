@@ -40,7 +40,8 @@ export default function Navbar() {
         </li>
       )}
     </>
-  )
+  );
+
   const renderAuthenticatedLinks = () => (
     <>
       <li className="nav-item">
@@ -131,7 +132,7 @@ export default function Navbar() {
           confirmMessage="Esci"
           declineMessage="Rimani sulla pagina"
           action={logout}
-          />}
+        />}
     </nav>
   );
 }

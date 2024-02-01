@@ -31,7 +31,7 @@ export default function Streamers(params) {
   }, [api_urls.backend]);
   
   return (
-    <div className="container pt-5 min-vh-100">
+    <div className="container component-height">
       <div className="row mt-5 pt-5">
         <div className="col-12 pt-5">
           <h1>Choose your streamer</h1>
