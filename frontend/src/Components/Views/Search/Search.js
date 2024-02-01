@@ -42,13 +42,14 @@ export default function Search() {
   }, []);
 
   useEffect(() => {
+    let isMounted = false
     const fetchGames = async() => {
       try {
         const url = `${api_urls.games}/api/games?&key=${api_secrets.games}&genres=${genre}&page=${num}&page_size=12`;
         const response = await getGames(url);
         const data = await response.json();
 
-        if (response.ok) {
+        if (isMounted && response.ok) {
           setGames(data.results)
         }
       } catch (error) {
@@ -56,6 +57,11 @@ export default function Search() {
       }
     }
     fetchGames();
+
+    // Cleanup function to be called when the component is unmounted
+    return () => {
+      isMounted = false;
+    };
   }, [genre, num]);
 
   useEffect(() => {

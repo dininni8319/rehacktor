@@ -10,12 +10,10 @@ import { faChevronCircleRight } from "@fortawesome/free-solid-svg-icons";
 import { getGame } from "../../../Services/gameService";
 
 export default function Game() {
-  let { slug } = useParams();
-  console.log("🚀 ~ Game ~ slug:", slug)
-  
-  let { api_urls, api_secrets } = useContext(ConfigContext);
+  const { slug } = useParams();
+  const { api_urls, api_secrets } = useContext(ConfigContext);
   const [game, setGame] = useState(null);
-  let { user } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
   useEffect(() => {
     const fetchGame = async () => {
@@ -94,7 +92,8 @@ export default function Game() {
           "You must be logged in if you want to stream"
         )}
     </>
-  )
+  );
+  
   return (
     <>
       {game ? (

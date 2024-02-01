@@ -26,13 +26,8 @@ export default function Streamers(params) {
       } catch (error) {
         alert("An error occured!");
       }
-      fetchActiveRooms();
     }
-    fetch()
-      .then((response) => response.json())
-      .then((rooms) => {
-        setRooms(rooms);
-      });
+    fetchActiveRooms();
   }, []);
   
   return (

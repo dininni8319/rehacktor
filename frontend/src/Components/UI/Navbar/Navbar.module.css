@@ -50,6 +50,12 @@
   /* z-index: 9; */
 }
 
+/* .rounded-circle {
+  border: 1px solid white;
+  padding: 5px 4px;
+  border-radius: 50%;
+} */
+
 .navLogo::before {
   position: absolute;
   content: "";

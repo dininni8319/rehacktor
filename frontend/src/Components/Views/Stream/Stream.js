@@ -8,18 +8,12 @@ import useInput from "./../../../Hooks/useInput";
 
 export default function Stream() {
   const myFaceVideo = useRef(null);
-
   const { game_name, game_id } = useParams();
-
   const { user } = useContext(AuthContext);
-
   const { api_urls } = useContext(ConfigContext);
-
   const { isStreaming, setStreamingOn, setStreamingOff } =
     useContext(StreamingContext);
-
   const number = useInput(1);
-
   const token = JSON.parse(localStorage.getItem("user")).token;
 
   function startStream(ev) {
@@ -72,7 +66,6 @@ export default function Stream() {
       })
       .then((data) => {
         localStorage.removeItem("game");
-
         setStreamingOff();
       })
       .catch((error) => {
