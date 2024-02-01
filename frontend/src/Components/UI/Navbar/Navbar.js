@@ -17,7 +17,7 @@ import { formatUsername } from "../../../utilities/functions";
 export default function Navbar() {
   const { user, logout } = useContext(AuthContext);
   const { isStreaming } = useContext(StreamingContext);
-  const [modal, setModal] = useState(false);
+  const [ modal, setModal ] = useState(false);
   const closeModal = () => setModal(false);
   
   const renderNotAuthenticatedLinks = () => (
@@ -121,17 +121,17 @@ export default function Navbar() {
               renderAuthenticatedLinks()
             )}
           </ul>
-          {modal && <Modal
-            closeModal={closeModal}
-            title="O no..."
-            message="Vuoi gia lasciarci, ricorda che eventuali streeming in corso saranno interrotti"
-            confirmMessage="Esci"
-            declineMessage="Rimani sulla pagina"
-            action={logout}
-           />}
         </div>
         <div className={classes.navLogo}></div>
       </div>
+        {modal && <Modal
+          closeModal={closeModal}
+          title="O no..."
+          message="Vuoi gia lasciarci, ricorda che eventuali streeming in corso saranno interrotti"
+          confirmMessage="Esci"
+          declineMessage="Rimani sulla pagina"
+          action={logout}
+          />}
     </nav>
   );
 }

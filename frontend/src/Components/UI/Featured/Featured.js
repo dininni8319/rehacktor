@@ -32,18 +32,16 @@ export default function Featured() {
     <>
       <div className="container">
         <div className="row">
-          {featured?.map((el) => {
-              return (
-                <div key={el.id} className="col-12 col-md-6 col-lg-3 d-flex justify-content-center">
-                  <Card
-                    image={el.background_image}
-                    name={el.name}
-                    playtime={el.playtime}
-                    slug={el.slug}
-                  />
-                </div>
-              );
-            })}
+          {featured?.map((el) => (
+            <div key={el.id} className="col-12 col-md-6 col-lg-3 d-flex justify-content-center">
+              <Card
+                image={el.background_image}
+                name={el.name}
+                playtime={el.playtime}
+                slug={el.slug}
+              />
+            </div>
+          ))}
         </div>
       </div>
     </>

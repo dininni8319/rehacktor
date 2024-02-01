@@ -1,5 +1,11 @@
 // authService.js
-export const registerUser = async (apiUrl, username, email, password, passwordConfirmation) => {
+export const registerUser = async (
+  apiUrl, 
+  username, 
+  email, 
+  password,
+  passwordConfirmation
+) => {
   const response = await fetch(`${apiUrl}/api/users/register`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },

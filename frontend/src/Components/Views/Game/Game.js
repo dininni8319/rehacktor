@@ -1,18 +1,17 @@
-import { useParams } from "react-router";
-import { useEffect, useState } from "react";
-import Loader from "../../UI/Loader/Loader";
+import { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
-import { useContext } from "react";
+import { useParams } from "react-router";
 import { ConfigContext } from "../../../Contexts/Config/index";
 import { AuthContext } from "./../../../Contexts/Auth/index";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronCircleRight } from "@fortawesome/free-solid-svg-icons";
 import { getGame } from "../../../Services/gameService";
+import Loader from "../../UI/Loader/Loader";
 
 export default function Game() {
   const { slug } = useParams();
   const { api_urls, api_secrets } = useContext(ConfigContext);
-  const [game, setGame] = useState(null);
+  const [ game, setGame ] = useState(null);
   const { user } = useContext(AuthContext);
 
   useEffect(() => {
@@ -24,6 +23,7 @@ export default function Game() {
           api_secrets.games
         );
         const data = await response.json();
+
         if (response.ok) {
           setGame(data);
         } else {
@@ -95,10 +95,10 @@ export default function Game() {
   );
   
   return (
-    <>
+    <div className="component-height">
       {game ? (
         <div
-          className="container-fluid  pt-5 min-vh-100"
+          className="container-fluid pt-5"
           style={{
             background: `linear-gradient(rgba(33, 33, 33, 1), rgba(33, 33, 33, 0.8), rgba(33, 33, 33, 1)),url(${game.background_image})`,
             backgroundSize: "cover",
@@ -114,7 +114,7 @@ export default function Game() {
               </div>
             </div>
             <div className="row mt-5">
-              <div className="col-12 col-md-6">{game.description_raw}</div>
+              <div className="col-12 col-md-6">{game.description_raw.slice(0,1500)}...</div>
               <div className="col-12 col-md-6">
                 <img
                   className="img-fluid"
@@ -145,6 +145,6 @@ export default function Game() {
       ) : (
         <Loader />
       )}
-    </>
+    </div>
   );
 }

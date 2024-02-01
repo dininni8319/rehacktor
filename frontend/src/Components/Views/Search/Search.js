@@ -20,11 +20,9 @@ export default function Search() {
   const [searched, setSearched] = useState("");
   const [games, setGames] = useState(null);
 
-  let { genre } = useParams();
-  let { num } = useParams();
-  let { api_urls, api_secrets } = useContext(ConfigContext);
-
-  let searchGenre = `${api_urls.games}/api/genres?&key=${api_secrets.games}`;
+  const { genre, num } = useParams();
+  const { api_urls, api_secrets } = useContext(ConfigContext);
+  const searchGenre = `${api_urls.games}/api/genres?&key=${api_secrets.games}`;
 
   useEffect(() => {
     const fetchGenre = async () => {
@@ -39,7 +37,7 @@ export default function Search() {
       }
     }
     fetchGenre();
-  });
+  }, [genre]);
 
   useEffect(() => {
     const fetchGames = async() => {

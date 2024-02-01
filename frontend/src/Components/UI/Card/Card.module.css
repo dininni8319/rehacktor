@@ -1,5 +1,5 @@
 .card-game {
-  margin-top: 50px;
+  margin-top: 20px;
   width: 300px;
   height: 200px;
   position: relative;
@@ -10,7 +10,8 @@
 .card-game > img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: cover; /*Specifies how the contents of a replaced element 
+  should be scaled relative to the box established by its used height and width.*/
   filter: blur(0px) brightness(50%);
 }
 
@@ -37,6 +38,7 @@
   transition: 1s;
 }
 
+/*Render the link on the card */
 .card-game:hover > a {
   opacity: 1;
 }
@@ -49,17 +51,20 @@
   position: absolute;
   height: 10px;
   width: 100%;
-  background: repeating-linear-gradient(
+  /* This is for the zig zag border*/
+  background: repeating-linear-gradient( 
     -45deg,
     transparent 0 10px,
     rgba(0, 255, 255, 0.4) 10px 20px
   );
 }
 
+/* This is for the zig zag border top*/
 .card-game > div:first-of-type {
   top: 0px;
 }
 
+/* This is for the zig zag border bottom*/
 .card-game > div:last-of-type {
   bottom: 0px;
 }
