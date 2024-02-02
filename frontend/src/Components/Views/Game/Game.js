@@ -60,7 +60,7 @@ export default function Game() {
   );
 
   const renderGenres = () => (
-    <div className="d-flex">
+    <div className="d-flex flex-column mb-3">
       {game?.genres.map((el) => (
           <Link
             key={el.id}
@@ -77,20 +77,22 @@ export default function Game() {
 
   const renderStartStreamButton = () => (
     <>
-       {user ? (
-          <Link
-            to={`/stream/${game.slug}/${game.id}`}
-            className="h4 text-main text-decoration-none fts-italic d-flex align-items-center"
-          >
-            <FontAwesomeIcon
-              icon={faChevronCircleRight}
-              className="fa-1x mx-1 text-main mb-2 mx-3"
-            ></FontAwesomeIcon>
-            <h3>Start Your Stream</h3>
-          </Link>
-        ) : (
-          "You must be logged in if you want to stream"
-        )}
+      {user ? (
+        <Link
+          to={`/stream/${game.slug}/${game.id}`}
+          className="h4 text-main text-decoration-none fts-italic d-flex align-items-center"
+        >
+          <FontAwesomeIcon
+            icon={faChevronCircleRight}
+            className="fa-1x mx-1 text-main mb-2 mx-3"
+          ></FontAwesomeIcon>
+          <h3>Start Your Stream</h3>
+        </Link>
+      ) : (
+        <Link to={`/sign`} className="nav-link text-main"> 
+          You must be logged in if you want to stream. Go to the login page!
+        </Link>
+      )}
     </>
   );
   

@@ -58,24 +58,21 @@ export default function SignUp() {
 
   const signin = async (event) => {
     event.preventDefault();
-    const isLoggedIn = await handleLogin();
-    if (isLoggedIn) {
-       const token = await handleLogin();
+    const token = await handleLogin();
 
-      if (token) {
-        const userProfile = await handleViewProfile(token);
+    if (token) {
+      const userProfile = await handleViewProfile(token);
 
-        if (userProfile) {
-          login(
-            userProfile.name, 
-            token, 
-            userProfile.id
-          );
-          navigate('/');
-        }
+      if (userProfile) {
+        login(
+          userProfile.name, 
+          token, 
+          userProfile.id
+        );
+        navigate('/');
       }
     }
-  };
+  }
 
   return (
     <form className={`${"sign-form"}`} onSubmit={signin}>

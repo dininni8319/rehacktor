@@ -111,8 +111,8 @@ export default function SignIn() {
 
   return (
     <>
-      <form className={`${"sign-form"}`} onSubmit={signup}>
-        <div className={`${"sign-top"}`}></div>
+      <form className={`${"sign-form mt-5"}`} onSubmit={signup}>
+        <div className={`${"sign-top mt-3"}`}></div>
         <div className={`${"sign-bottom"}`}></div>
         <div className="mb-5">
           <label className="form-label" htmlFor="userName">
