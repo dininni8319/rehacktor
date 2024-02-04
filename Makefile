@@ -31,3 +31,8 @@ prettier: ##prettier
 clearCache: ## to clear the cache
 	@echo "clear cache"
 	@cd backend && php artisan cache:clear && php artisan config:cache && php artisan route:clear
+	
+runProd: ## to clear the cache
+	@echo "run prod"
+	@cd backend && php artisan optimize:clear
+	@cd frontend && npm run build

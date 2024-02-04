@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/static/css/main.5914dffb.css",
+    "main.js": "/static/js/main.883a6b7c.js",
+    "static/js/787.d8c6ec95.chunk.js": "/static/js/787.d8c6ec95.chunk.js",
+    "static/media/video.mp4": "/static/media/video.190229903f267a2564ee.mp4",
+    "static/media/video-compressed.mp4": "/static/media/video-compressed.49622725a02aa19cc138.mp4",
+    "static/media/original.jpeg": "/static/media/original.cc29d7afb712a9f16668.jpeg",
+    "static/media/alien-planet.jpeg": "/static/media/alien-planet.6ccc98a947f32d1db961.jpeg",
+    "static/media/Exan-Regular.ttf": "/static/media/Exan-Regular.cad2ee179050f58b79c3.ttf",
+    "index.html": "/index.html",
+    "main.5914dffb.css.map": "/static/css/main.5914dffb.css.map",
+    "main.883a6b7c.js.map": "/static/js/main.883a6b7c.js.map",
+    "787.d8c6ec95.chunk.js.map": "/static/js/787.d8c6ec95.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5914dffb.css",
+    "static/js/main.883a6b7c.js"
+  ]
+}

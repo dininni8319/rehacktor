@@ -59,7 +59,6 @@ class UserController extends Controller
         $user = User::where('email', $credentials['email'])->first();
 
         if($user) {
-
             if (! auth()->attempt($credentials)) {
                 $responseMessage = 'Invalid username or password';
                 return response()->json([
