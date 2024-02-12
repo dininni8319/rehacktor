@@ -1,8 +1,9 @@
-<h1>Rehacktor</h1>
-<h2>React, Laravel App.</h2>
-<h3>Overview</h3>
-<p>
-This application allows users to search for a game, and share the streaming while they are playing with their friends.</p>
+# Rehacktor
+React, Laravel App.
+
+### Overview
+This application allows users to search for a game, and share the streaming while they are playing with their friends.
+
 <h3>Useful commands run the application, install packages, and update the DB.</h3> 
 <strong>make dev </strong> = specifica la tipologia di comando, avvia entrambi le applicazioni, backend and frontend, con un unico commando di autonomazione.
 <br>
@@ -10,7 +11,7 @@ This application allows users to search for a game, and share the streaming whil
 <br>
 <strong>make install</strong> = performs installations setup
 
-<h3>Packages/Commands:</h3>
+### Packages/Commands:
 #npx create-react-app "name"<br>
 #npm i react-router-dom<br>
 #npm uninstall react-router-dom<br>
@@ -72,10 +73,11 @@ http GET http://localhost:8001/api/users/count
 <strong>php artisan route:cache</strong><br>
 <strong>php artisan optimize</strong><br>
 
-<h2>Full-Stack Developer: <span>Salvatore Dininni</span></h2>
+### Frontend / Full-Stack Developer: 
+Salvatore Dininni
 
-<h4>Something about Me...<h4>
-<p>From the sizzling world of the kitchen to the dynamic realm of tech, my journey took an unexpected turn during the pandemic. Embracing the art of coding with TypeScript, the younger cousin of JavaScript, has become my passion. With a deep understanding of frontend technologies, I bring a unique blend of creativity and technical prowess to every project. Currently exploring new opportunities in the frontend landscape – let's create something amazing together!</p>
+### Something about Me...
+From the sizzling world of the kitchen to the dynamic realm of tech, my journey took an unexpected turn during the pandemic. Embracing the art of coding with TypeScript, the younger cousin of JavaScript, has become my passion. With a deep understanding of frontend technologies, I bring a unique blend of creativity and technical prowess to every project. Currently exploring new opportunities in the frontend landscape – let's create something amazing together!
 
 <p>A Highly Motivated Individual, open to new challenges and quickly learns new technologies. Self-driven, dedicated, and hard-working. Passionate about Web Development, Web Design, and Web Technologies.</p>
 <br/>
@@ -91,14 +93,24 @@ Attended remote Hackademy course, based in Bari, Italy. The technology involved 
 Completed Full-Stack Bootcamp with Propulsion Academy based in Zurich, Switzerland. Learned HTML5, CSS3, SCSS, JavaScript, React, Redux, Python, Django, PostgresSQL, REST Framework, Docker, GitLab, Git, NPM, Node, and Web Deployment. As a final project, I developed a Student Tracker, where professors of the course can keep track of student progress and grades. 
 </p>
 <br/>
-<p>
-Spoken languages: Italian, English, German.</p>
-<br>
-<strong>More details...<strong>
+
+### Spoken languages: 
+- Italian 
+- English 
+- German
+
+### More details...
 <b>LinkedIn Profile: <a href="https://www.linkedin.com/in/salvatoredininni/" >https://www.linkedin.com/in/salvatoredininni/ </a></b>
 <br>
 <b>Portfolio Website: <a href="https://www.salvatore-dininni.com" >https://salvatore-dininni.com</a></b> 
 
+
+### My other projects:
+<b>Game Streaming React / Laravel App: <a href="https://rehacktor.vercel.app/" >https://rehacktor.vercel.app</a></b> 
+<br>
+<b>Email Client Angular App: <a href="https://emailclient-henna.vercel.app" >https://emailclient-henna.vercel.app/</a></b> 
+<br>
+<b>Search User Github App: <a href="https://github-search-green-five.vercel.app/">https://github-search-green-five.vercel.app/</a></b>
 
 
 
