@@ -104,7 +104,6 @@ Completed Full-Stack Bootcamp with Propulsion Academy based in Zurich, Switzerla
 <br>
 <b>Portfolio Website: <a href="https://www.salvatore-dininni.com" >https://salvatore-dininni.com</a></b> 
 
-
 ### My other projects:
 <b>Game Streaming React / Laravel App: <a href="https://rehacktor.vercel.app/" >https://rehacktor.vercel.app</a></b> 
 <br>
