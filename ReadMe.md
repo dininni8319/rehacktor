@@ -96,6 +96,7 @@ Completed Full-Stack Bootcamp with Propulsion Academy based in Zurich, Switzerla
 - Italian 
 - English 
 - German
+- French
 
 ## More details...
 <b>LinkedIn Profile: <a href="https://www.linkedin.com/in/salvatoredininni/" >https://www.linkedin.com/in/salvatoredininni/ </a></b>
